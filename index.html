@@ -1,231 +1,260 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>The Cupid Times - Special Edition</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Dancing+Script:wght@600&family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>The Cupid Times - Special Edition</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Dancing+Script:wght@600&family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap');
 
-        /* RESET & BASE */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body, html { 
-            background: #dcd7c9; /* Tabletop background */
-            font-family: 'EB Garamond', serif;
-            color: #1a1a1a;
-            line-height: 1.4;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+/* RESET & BASE */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body, html { 
+    background: #dcd7c9; 
+    font-family: 'EB Garamond', serif;
+    color: #1a1a1a;
+    line-height: 1.4;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
 
-        /* THE PAPER CONTAINER */
-        #news-container {
-            width: 95%;
-            max-width: 500px;
-            margin: 20px auto;
-            background: #f4f1ea; /* Real newsprint color */
-            border: 1px solid #d1ccc0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2), inset 0 0 100px rgba(0,0,0,0.05);
-            padding: 30px 15px;
-            position: relative;
-        }
+/* THE PAPER CONTAINER */
+#news-container {
+    width: 95%;
+    max-width: 500px;
+    margin: 20px auto;
+    background: #f4f1ea;
+    border: 1px solid #d1ccc0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2), inset 0 0 100px rgba(0,0,0,0.05);
+    padding: 30px 15px;
+    position: relative;
+}
 
-        /* MASTHEAD - THE MAIN BANNER */
-        .masthead {
-            text-align: center;
-            border-bottom: 4px double #1a1a1a;
-            margin-bottom: 25px;
-            padding-bottom: 10px;
-        }
-        .masthead h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-        }
-        .meta-data {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            font-weight: 700;
-            border-top: 1px solid #1a1a1a;
-            padding-top: 4px;
-            margin-top: 4px;
-        }
+/* MASTHEAD - THE MAIN BANNER */
+.masthead {
+    text-align: center;
+    border-bottom: 4px double #1a1a1a;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+}
+.masthead h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+}
+.meta-data {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-top: 1px solid #1a1a1a;
+    padding-top: 4px;
+    margin-top: 4px;
+}
 
-        /* ARTICLE SECTIONS */
-        .section {
-            margin-bottom: 40px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 1s ease-out;
-        }
-        .reveal { opacity: 1 !important; transform: translateY(0) !important; }
+/* ARTICLE SECTIONS */
+.section {
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease-out;
+}
+.reveal { opacity: 1 !important; transform: translateY(0) !important; }
 
-        .headline {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            line-height: 1.1;
-            margin-bottom: 12px;
-            border-bottom: 1px solid #1a1a1a;
-            padding-bottom: 5px;
-        }
-        .sub-headline {
-            font-family: 'EB Garamond', serif;
-            font-style: italic;
-            font-size: 1.1rem;
-            color: #444;
-            margin-bottom: 15px;
-            display: block;
-        }
-        .content {
-            font-size: 1.15rem;
-            text-align: justify;
-            margin-bottom: 15px;
-            hyphens: auto;
-        }
+.headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #1a1a1a;
+    padding-bottom: 5px;
+}
+.sub-headline {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #444;
+    margin-bottom: 15px;
+    display: block;
+}
+.content {
+    font-size: 1.15rem;
+    text-align: justify;
+    margin-bottom: 15px;
+    hyphens: auto;
+}
 
-        /* SIDEBARS & ADS */
-        .column-grid {
-            display: grid;
-            grid-template-columns: 1fr; /* Single column for mobile to prevent overlap */
-            gap: 20px;
-        }
-        .editorial-box {
-            border: 1px solid #1a1a1a;
-            padding: 15px;
-            background: rgba(0,0,0,0.02);
-            font-style: italic;
-        }
-        .classifieds {
-            border-top: 1px dashed #1a1a1a;
-            padding-top: 15px;
-            font-size: 0.95rem;
-        }
-        .ad-spot {
-            border: 2px solid #1a1a1a;
-            text-align: center;
-            padding: 10px;
-            margin: 20px 0;
-            font-family: 'Playfair Display', serif;
-            text-transform: uppercase;
-        }
+/* COLUMN GRID & SIDE SECTIONS */
+.column-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* single column mobile-friendly */
+    gap: 20px;
+}
+.editorial-box {
+    border: 1px solid #1a1a1a;
+    padding: 15px;
+    background: rgba(0,0,0,0.02);
+    font-style: italic;
+}
+.ad-spot {
+    border: 2px solid #1a1a1a;
+    text-align: center;
+    padding: 10px;
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+}
 
-        /* HANDWRITTEN SIGNATURES */
-        .signature {
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.8rem;
-            color: #8b2635;
-            display: block;
-            text-align: right;
-            margin-top: 10px;
-        }
+/* SIGNATURES */
+.signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    color: #8b2635;
+    display: block;
+    text-align: right;
+    margin-top: 10px;
+}
 
-        /* FINAL CELESTIAL ALIGNMENT */
-        #final-scene {
-            text-align: center;
-            padding: 60px 0;
-            border-top: 3px double #1a1a1a;
-        }
-        .star-box {
-            height: 120px;
-            position: relative;
-            width: 100%;
-            margin: 20px 0;
-        }
-        .star-ink {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: #1a1a1a;
-            border-radius: 50%;
-            top: 50%;
-            opacity: 0;
-            transition: all 5s ease-in-out;
-        }
-        #s-left { left: 0; }
-        #s-right { right: 0; }
-        .align-l { left: 45% !important; opacity: 1 !important; }
-        .align-r { right: 45% !important; opacity: 1 !important; }
+/* FINAL CELESTIAL ALIGNMENT */
+#final-scene {
+    text-align: center;
+    padding: 60px 0;
+    border-top: 3px double #1a1a1a;
+}
+.star-box {
+    height: 120px;
+    position: relative;
+    width: 100%;
+    margin: 20px 0;
+}
+.star-ink {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #1a1a1a;
+    border-radius: 50%;
+    top: 50%;
+    opacity: 0;
+    transition: all 5s ease-in-out;
+}
+#s-left { left: 0; }
+#s-right { right: 0; }
+.align-l { left: 45% !important; opacity: 1 !important; }
+.align-r { right: 45% !important; opacity: 1 !important; }
 
-    </style>
+/* MEMORY & SMILE SECTION */
+.memory-box {
+    border: 1px dashed #a33b3b;
+    padding: 15px;
+    margin: 20px 0;
+    background: rgba(255,200,200,0.05);
+    font-style: italic;
+}
+.smile-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #ff8fa3;
+    color: #fff;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.2rem;
+    margin-top: 10px;
+    transition: transform 0.2s ease;
+}
+.smile-button:hover {
+    transform: scale(1.1);
+}
+</style>
 </head>
 <body>
 
-    <div id="news-container">
-        <div class="masthead">
-            <h1>The Cupid Times</h1>
-            <div class="meta-data">
-                <span>The Silent Shore Edition</span>
-                <span>Sat, Feb 14, 2026</span>
-                <span>One Heart Only</span>
-            </div>
+<div id="news-container">
+    <div class="masthead">
+        <h1>The Cupid Times</h1>
+        <div class="meta-data">
+            <span>The Silent Shore Edition</span>
+            <span>Sat, Feb 14, 2026</span>
+            <span>One Heart Only</span>
         </div>
-
-        <div class="section">
-            <h2 class="headline">Atmospheric Shift: Winds Reported Softer Today</h2>
-            <span class="sub-headline">Reports suggest the breeze carries an unspoken message.</span>
-            <p class="content">If the air feels different as you hold this page, it is because every unspoken thought has been recorded here. We’ve navigated through "half there" moments and heavy silences, but today the lead story is simple: I am still here, and I still value you exactly as you are.</p>
-        </div>
-
-        <div class="section column-grid">
-            <div class="editorial-box">
-                <p>"Vulnerability is the only way to build a bridge where distance once was. Today, we choose to speak from the heart."</p>
-            </div>
-            <div class="ad-spot">
-                <p style="font-size: 0.7rem;">For Your Peace Of Mind</p>
-                <p>A CRYSTAL BEAR</p>
-                <p style="font-size: 0.6rem;">Now In Stock For A Smile</p>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2 class="headline">Editorial: A Statement of Fact & Honor</h2>
-            <p class="content">In a world full of noise, quiet honesty remains the most important narrative. I am not here to ask you for anything—I am only here to record that you matter. For every sweet day and every bitter one, thank you for being a part of this story.</p>
-            <span class="signature">— With every good intention.</span>
-        </div>
-
-        <div class="section classifieds">
-            <p><strong>FOUND:</strong> A safe anchor. Steady, patient, and ready to respect your space and comfort at all costs.</p>
-            <p style="margin-top: 10px;"><strong>WANTED:</strong> Just a moment for you to breathe and know that you are safe in this sanctuary.</p>
-        </div>
-
-        <div class="section" id="final-trigger">
-            <div id="final-scene">
-                <h2 class="headline" style="border:none; text-align:center;">Grateful Our Paths Crossed</h2>
-                <p class="content" style="text-align:center;">Whatever direction life takes us next, I am simply happy that for a moment in time, we shared the same light.</p>
-                
-                <div class="star-box">
-                    <div id="s-left" class="star-ink"></div>
-                    <div id="s-right" class="star-ink"></div>
-                </div>
-
-                <p class="signature" style="text-align:center; font-size: 2.3rem;">I’ll be here — quietly, always.</p>
-            </div>
-        </div>
-
-        <p style="text-align:center; font-style:italic; opacity:0.4; font-size: 0.8rem;">End of Special Edition - Feb 14, 2026</p>
     </div>
 
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('reveal');
-                    if (entry.target.id === 'final-trigger') {
-                        setTimeout(() => {
-                            document.getElementById('s-left').classList.add('align-l');
-                            setTimeout(() => {
-                                document.getElementById('s-right').classList.add('align-r');
-                            }, 1500);
-                        }, 1000);
-                    }
-                }
-            });
-        }, { threshold: 0.1 });
+    <!-- MAIN ARTICLE -->
+    <div class="section">
+        <h2 class="headline">Atmospheric Shift: Winds Reported Softer Today</h2>
+        <span class="sub-headline">Reports suggest the breeze carries an unspoken message.</span>
+        <p class="content">If the air feels different as you hold this page, it is because every unspoken thought has been recorded here. We’ve navigated through "half there" moments and heavy silences, but today the lead story is simple: I am still here, and I still value you exactly as you are.</p>
+    </div>
 
-        document.querySelectorAll('.section').forEach(sec => observer.observe(sec));
-    </script>
+    <!-- MEMORY SECTION -->
+    <div class="section memory-box">
+        <h2 class="headline">Cherished Moments</h2>
+        <p class="content">Remember the small, quiet laughs? The times we shared without words, yet felt everything? Those are the moments that shine brightest in my heart.</p>
+    </div>
+
+    <!-- SIDE SECTIONS -->
+    <div class="section column-grid">
+        <div class="editorial-box">
+            <p>"Vulnerability is the only way to build a bridge where distance once was. Today, we choose to speak from the heart."</p>
+        </div>
+        <div class="ad-spot">
+            <p style="font-size: 0.7rem;">For Your Peace Of Mind</p>
+            <p>Just a Smile 😊</p>
+            <p style="font-size: 0.6rem;">A tiny reason to feel lighthearted today</p>
+            <span class="smile-button" onclick="alert('😊 Smile back!')">Give a Smile</span>
+        </div>
+    </div>
+
+    <!-- EDITORIAL ARTICLE -->
+    <div class="section">
+        <h2 class="headline">Editorial: A Statement of Fact & Honor</h2>
+        <p class="content">In a world full of noise, quiet honesty remains the most important narrative. I am not here to ask you for anything—I am only here to record that you matter. For every sweet day and every bitter one, thank you for being a part of this story.</p>
+        <span class="signature">— With every good intention.</span>
+    </div>
+
+    <!-- CLASSIFIEDS -->
+    <div class="section classifieds">
+        <p><strong>FOUND:</strong> A safe anchor. Steady, patient, and ready to respect your space and comfort at all costs.</p>
+        <p style="margin-top: 10px;"><strong>WANTED:</strong> Just a moment for you to breathe and know that you are safe in this sanctuary.</p>
+    </div>
+
+    <!-- FINAL SCENE -->
+    <div class="section" id="final-trigger">
+        <div id="final-scene">
+            <h2 class="headline" style="border:none; text-align:center;">Grateful Our Paths Crossed</h2>
+            <p class="content" style="text-align:center;">Whatever direction life takes us next, I am simply happy that for a moment in time, we shared the same light.</p>
+            
+            <div class="star-box">
+                <div id="s-left" class="star-ink"></div>
+                <div id="s-right" class="star-ink"></div>
+            </div>
+
+            <p class="signature" style="text-align:center; font-size: 2.3rem;">I’ll be here — quietly, always.</p>
+        </div>
+    </div>
+
+    <p style="text-align:center; font-style:italic; opacity:0.4; font-size: 0.8rem;">End of Special Edition - Feb 14, 2026</p>
+</div>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('reveal');
+            if (entry.target.id === 'final-trigger') {
+                setTimeout(() => {
+                    document.getElementById('s-left').classList.add('align-l');
+                    setTimeout(() => {
+                        document.getElementById('s-right').classList.add('align-r');
+                    }, 1500);
+                }, 1000);
+            }
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.section').forEach(sec => observer.observe(sec));
+</script>
 </body>
 </html>
