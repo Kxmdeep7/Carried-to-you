@@ -3,130 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>The Cupid Times - Feb 14, 2026</title>
+    <title>The Cupid Times - Special Edition</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Dancing+Script:wght@600&family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap');
 
+        /* RESET & BASE */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         body, html { 
-            height: 100%; width: 100%;
-            background: #dcd7c9; 
+            background: #dcd7c9; /* Tabletop background */
             font-family: 'EB Garamond', serif;
+            color: #1a1a1a;
+            line-height: 1.4;
             overflow-x: hidden;
-            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
         }
 
-        #paper {
-            width: 96%; max-width: 650px;
-            margin: 15px auto;
-            background: #f4f1ea;
+        /* THE PAPER CONTAINER */
+        #news-container {
+            width: 95%;
+            max-width: 500px;
+            margin: 20px auto;
+            background: #f4f1ea; /* Real newsprint color */
             border: 1px solid #d1ccc0;
-            box-shadow: 10px 20px 50px rgba(0,0,0,0.2), inset 0 0 100px rgba(0,0,0,0.05);
-            padding: 40px 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2), inset 0 0 100px rgba(0,0,0,0.05);
+            padding: 30px 15px;
             position: relative;
         }
 
-        /* MASTHEAD */
+        /* MASTHEAD - THE MAIN BANNER */
         .masthead {
-            text-align: center; border-bottom: 5px double #1a1a1a;
-            padding-bottom: 12px; margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 4px double #1a1a1a;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
         }
-        .masthead h1 { font-family: 'Playfair Display', serif; font-size: 3.2rem; font-weight: 900; text-transform: uppercase; line-height: 1; }
-        .meta-line { 
-            display: flex; justify-content: space-between; 
-            font-size: 0.85rem; border-top: 1px solid #1a1a1a; 
-            padding: 5px 0; text-transform: uppercase; font-weight: 700;
+        .masthead h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+        .meta-data {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            border-top: 1px solid #1a1a1a;
+            padding-top: 4px;
+            margin-top: 4px;
         }
 
-        /* LAYOUT COLUMNS */
-        .news-row { display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 40px; opacity: 0; transform: translateY(20px); transition: 1.5s all ease; }
-        .reveal { opacity: 1 !important; transform: translateY(0px) !important; }
+        /* ARTICLE SECTIONS */
+        .section {
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease-out;
+        }
+        .reveal { opacity: 1 !important; transform: translateY(0) !important; }
 
-        .main-col { flex: 2; min-width: 280px; }
-        .side-col { flex: 1; min-width: 180px; border-left: 1px solid #d1ccc0; padding-left: 20px; }
+        .headline {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            line-height: 1.1;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #1a1a1a;
+            padding-bottom: 5px;
+        }
+        .sub-headline {
+            font-family: 'EB Garamond', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #444;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .content {
+            font-size: 1.15rem;
+            text-align: justify;
+            margin-bottom: 15px;
+            hyphens: auto;
+        }
 
-        /* TYPOGRAPHY */
-        .headline { font-family: 'Playfair Display', serif; font-size: 2.3rem; line-height: 1.1; margin-bottom: 12px; color: #1a1a1a; }
-        .editorial-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-style: italic; border-bottom: 1px solid #1a1a1a; margin-bottom: 10px; }
-        .content { font-size: 1.15rem; line-height: 1.5; color: #222; text-align: justify; margin-bottom: 15px; }
-        .handwritten { font-family: 'Dancing Script', cursive; font-size: 1.8rem; color: #8b2635; display: block; margin-top: 10px; }
+        /* SIDEBARS & ADS */
+        .column-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Single column for mobile to prevent overlap */
+            gap: 20px;
+        }
+        .editorial-box {
+            border: 1px solid #1a1a1a;
+            padding: 15px;
+            background: rgba(0,0,0,0.02);
+            font-style: italic;
+        }
+        .classifieds {
+            border-top: 1px dashed #1a1a1a;
+            padding-top: 15px;
+            font-size: 0.95rem;
+        }
+        .ad-spot {
+            border: 2px solid #1a1a1a;
+            text-align: center;
+            padding: 10px;
+            margin: 20px 0;
+            font-family: 'Playfair Display', serif;
+            text-transform: uppercase;
+        }
 
-        /* ADS & CLASSIFIEDS */
-        .ad-box { border: 2px solid #1a1a1a; padding: 10px; margin: 20px 0; text-align: center; font-family: 'Playfair Display', serif; }
-        .classifieds { font-size: 0.9rem; line-height: 1.3; border-top: 1px dashed #1a1a1a; padding-top: 10px; }
-        .classified-item { margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        /* HANDWRITTEN SIGNATURES */
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #8b2635;
+            display: block;
+            text-align: right;
+            margin-top: 10px;
+        }
 
-        /* STAR FINALE */
-        #final-zone { text-align: center; padding: 60px 0; border-top: 3px double #1a1a1a; margin-top: 50px; }
-        .star-wrap { height: 100px; position: relative; width: 100%; margin: 30px 0; }
-        .star { position: absolute; width: 10px; height: 10px; background: #1a1a1a; border-radius: 50%; top: 45%; opacity: 0; transition: all 5s ease; }
-        #star-l { left: 5%; } #star-r { right: 5%; }
-        .meet-l { left: 46% !important; opacity: 1 !important; }
-        .meet-r { right: 46% !important; opacity: 1 !important; }
+        /* FINAL CELESTIAL ALIGNMENT */
+        #final-scene {
+            text-align: center;
+            padding: 60px 0;
+            border-top: 3px double #1a1a1a;
+        }
+        .star-box {
+            height: 120px;
+            position: relative;
+            width: 100%;
+            margin: 20px 0;
+        }
+        .star-ink {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #1a1a1a;
+            border-radius: 50%;
+            top: 50%;
+            opacity: 0;
+            transition: all 5s ease-in-out;
+        }
+        #s-left { left: 0; }
+        #s-right { right: 0; }
+        .align-l { left: 45% !important; opacity: 1 !important; }
+        .align-r { right: 45% !important; opacity: 1 !important; }
 
     </style>
 </head>
 <body>
 
-    <div id="paper">
+    <div id="news-container">
         <div class="masthead">
             <h1>The Cupid Times</h1>
-            <div class="meta-line">
-                <span>The Sanctuary District</span>
-                <span>Saturday, Feb 14, 2026</span>
-                <span>Late Edition</span>
+            <div class="meta-data">
+                <span>The Silent Shore Edition</span>
+                <span>Sat, Feb 14, 2026</span>
+                <span>One Heart Only</span>
             </div>
         </div>
 
-        <div class="news-row">
-            <div class="main-col">
-                <h2 class="headline">Atmospheric Calm: The Wind Carries a Silent Promise</h2>
-                <p class="content">If the air feels softer as you read these lines, it is because I have spent the last week pouring every unspoken thought into this quiet space. I know things have felt "half there" lately, and the silence has been heavy. But today, the lead story isn't the distance—it's the fact that I am still here, watching for your smile.</p>
-                <p class="content">I’m not here to ask you to move faster or to be anything other than exactly who you are right now. I just wanted to record, in permanent ink, that you are valued.</p>
+        <div class="section">
+            <h2 class="headline">Atmospheric Shift: Winds Reported Softer Today</h2>
+            <span class="sub-headline">Reports suggest the breeze carries an unspoken message.</span>
+            <p class="content">If the air feels different as you hold this page, it is because every unspoken thought has been recorded here. We’ve navigated through "half there" moments and heavy silences, but today the lead story is simple: I am still here, and I still value you exactly as you are.</p>
+        </div>
+
+        <div class="section column-grid">
+            <div class="editorial-box">
+                <p>"Vulnerability is the only way to build a bridge where distance once was. Today, we choose to speak from the heart."</p>
             </div>
-            <div class="side-col">
-                <div class="editorial-title">Editorial</div>
-                <p class="content" style="font-size: 1rem; font-style: italic;">"Vulnerability is not a weakness; it is the only way to build a bridge back to a safe harbor. We promise to keep the lights on."</p>
-                <div class="ad-box">
-                    <p style="font-size: 0.8rem;">FOR SALE:</p>
-                    <p>ONE CRYSTAL BEAR</p>
-                    <p style="font-size: 0.7rem;">Price: Your Peace of Mind</p>
-                </div>
+            <div class="ad-spot">
+                <p style="font-size: 0.7rem;">For Your Peace Of Mind</p>
+                <p>A CRYSTAL BEAR</p>
+                <p style="font-size: 0.6rem;">Now In Stock For A Smile</p>
             </div>
         </div>
 
-        <div class="news-row">
-            <div class="side-col" style="border-left:none; border-right:1px solid #d1ccc0; padding-left:0; padding-right:20px;">
-                <h3 style="font-family: 'Playfair Display', serif; margin-bottom:10px;">Classifieds</h3>
-                <div class="classifieds">
-                    <div class="classified-item"><strong>LOST:</strong> A bit of certainty. If found, please keep it; we are building something better from scratch.</div>
-                    <div class="classified-item"><strong>FOUND:</strong> A safe anchor in Kingsville. Durable, steady, and patient.</div>
-                    <div class="classified-item"><strong>WANTED:</strong> Just a moment of your time to breathe and feel respected.</div>
-                </div>
-            </div>
-            <div class="main-col">
-                <h2 class="headline">A Decree of Sanctuary: Respecting the Quiet</h2>
-                <p class="content">This publication officially confirms a standing commitment to your comfort. I promise to respect the space you need and the peace you deserve. There are no demands in these columns, only a sanctuary for you to return to whenever the world feels too loud.</p>
-                <span class="handwritten">— Yours, in every sweet and bitter moment.</span>
-            </div>
+        <div class="section">
+            <h2 class="headline">Editorial: A Statement of Fact & Honor</h2>
+            <p class="content">In a world full of noise, quiet honesty remains the most important narrative. I am not here to ask you for anything—I am only here to record that you matter. For every sweet day and every bitter one, thank you for being a part of this story.</p>
+            <span class="signature">— With every good intention.</span>
         </div>
 
-        <div class="news-row" id="final-trigger">
-            <div id="final-zone">
-                <h2 class="headline" style="border:none;">Grateful Our Stories Crossed</h2>
-                <p class="content" style="text-align:center;">Whatever direction life takes us from here, I am simply happy that for a moment in time, our stars occupied the same sky.</p>
+        <div class="section classifieds">
+            <p><strong>FOUND:</strong> A safe anchor. Steady, patient, and ready to respect your space and comfort at all costs.</p>
+            <p style="margin-top: 10px;"><strong>WANTED:</strong> Just a moment for you to breathe and know that you are safe in this sanctuary.</p>
+        </div>
+
+        <div class="section" id="final-trigger">
+            <div id="final-scene">
+                <h2 class="headline" style="border:none; text-align:center;">Grateful Our Paths Crossed</h2>
+                <p class="content" style="text-align:center;">Whatever direction life takes us next, I am simply happy that for a moment in time, we shared the same light.</p>
                 
-                <div class="star-wrap">
-                    <div id="star-l" class="star"></div>
-                    <div id="star-r" class="star"></div>
+                <div class="star-box">
+                    <div id="s-left" class="star-ink"></div>
+                    <div id="s-right" class="star-ink"></div>
                 </div>
 
-                <p class="handwritten" style="text-align:center; font-size: 2.5rem;">I’ll be here — quietly, always.</p>
+                <p class="signature" style="text-align:center; font-size: 2.3rem;">I’ll be here — quietly, always.</p>
             </div>
         </div>
 
-        <p style="text-align:center; font-style:italic; opacity:0.4; margin-top:30px;">End of Special Edition - Feb 14, 2026</p>
+        <p style="text-align:center; font-style:italic; opacity:0.4; font-size: 0.8rem;">End of Special Edition - Feb 14, 2026</p>
     </div>
 
     <script>
@@ -136,17 +215,17 @@
                     entry.target.classList.add('reveal');
                     if (entry.target.id === 'final-trigger') {
                         setTimeout(() => {
-                            document.getElementById('star-l').classList.add('meet-l');
+                            document.getElementById('s-left').classList.add('align-l');
                             setTimeout(() => {
-                                document.getElementById('star-r').classList.add('meet-r');
-                            }, 1200);
-                        }, 800);
+                                document.getElementById('s-right').classList.add('align-r');
+                            }, 1500);
+                        }, 1000);
                     }
                 }
             });
-        }, { threshold: 0.15 });
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.news-row').forEach(row => observer.observe(row));
+        document.querySelectorAll('.section').forEach(sec => observer.observe(sec));
     </script>
 </body>
 </html>
