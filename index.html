@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Cupid Times - Special Edition</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Dancing+Script:wght@600&family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap');
@@ -148,6 +148,26 @@
         #s-right { right: 0; }
         .align-l { left: 45% !important; opacity: 1 !important; }
         .align-r { right: 45% !important; opacity: 1 !important; }
+
+        /* BUTTON */
+        .smile-button {
+            display: inline-block;
+            background: #ff8fa3;
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: bold;
+            text-decoration: none;
+            font-family: 'EB Garamond', serif;
+        }
+
+        /* SPOTIFY EMBED */
+        .spotify-embed {
+            margin-top: 15px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -162,60 +182,49 @@
             </div>
         </div>
 
-        <!-- Opening Message -->
         <div class="section">
-            <h2 class="headline">Hey… the air feels different today</h2>
-            <span class="sub-headline">I think it’s carrying a quiet little message just for you.</span>
-            <p class="content">
-                Lately, things felt a little… half-there. Long silences, small pauses, tiny things left unsaid. But today, the breeze itself seems to whisper: I’m still here, I care, and I still notice <strong>you</strong>. That’s the lead story for the morning.
-            </p>
+            <h2 class="headline">Atmospheric Shift: Winds Reported Softer Today</h2>
+            <span class="sub-headline">Reports suggest the breeze carries an unspoken message.</span>
+            <p class="content">If the air feels different as you hold this page, it is because every unspoken thought has been recorded here. We’ve navigated through "half there" moments and heavy silences, but today the lead story is simple: I am still here, and I still value you exactly as you are.</p>
         </div>
 
-        <!-- Editorial Section -->
         <div class="section">
-            <h2 class="headline">Just a note — nothing fancy</h2>
-            <p class="content">
-                I’m not here to ask for anything, promise. I just wanted to write down something I hope you feel: you matter. Every smile, every quiet moment, even the little rough patches — they all mean something to me.<br><br>
-                Thank you for sharing them with me, just by being <em>you</em>.
-            </p>
-            <span class="signature">— With every good intention</span>
+            <h2 class="headline">Memory: Earlier This Week</h2>
+            <p class="content">Earlier this week, a claim was made regarding an ID card. While certainty was high, investigations proved the other party was correct. A formal apology was issued, accompanied by a playfully dramatic head tap. Witnesses describe the atmosphere as "effortlessly calm."</p>
         </div>
 
-        <!-- Memory Section -->
-        <div class="section">
-            <h2 class="headline">Earlier This Week: A Mini Adventure</h2>
-            <p class="content">
-                Remember the ID card mix-up? At first, I was sure I was right. But you turned out to be correct — of course 😅.<br>
-                I offered a formal apology (with a playful, dramatic head tap 🫡), and somehow the whole thing felt… effortlessly calm.<br>
-                Little moments like these stick with me — silly, human, and somehow perfect.
-            </p>
-        </div>
-
-        <!-- Smile Section -->
         <div class="section column-grid">
             <div class="editorial-box">
                 <p>"Vulnerability is the only way to build a bridge where distance once was. Today, we choose to speak from the heart."</p>
             </div>
             <div class="ad-spot">
                 <p style="font-size: 0.7rem;">For Your Peace Of Mind</p>
-                <p>😊🌿✨</p>
-                <p style="font-size: 0.6rem;">Just A Tiny Reminder To Smile</p>
+                <p>😊 SMILE EMOJI</p>
+                <p style="font-size: 0.6rem;">Now Available For A Smile</p>
             </div>
         </div>
 
-        <!-- Classifieds Section -->
-        <div class="section classifieds">
-            <p><strong>FOUND:</strong> A safe anchor. Steady, patient, and ready to respect your space and comfort at all costs.</p>
-            <p style="margin-top: 10px;"><strong>WANTED:</strong> Just a moment for you to breathe and know that you are safe in this little sanctuary.</p>
+        <div class="section">
+            <h2 class="headline">Editorial: Personal Note</h2>
+            <p class="content">All I can say is thank you for making me feel comfortable in my own skin. I never have to pretend or wear a mask around you, and I've never felt like this before. Being with you has been the most freeing, healing, and whole experience of my life so far.</p>
+
+            <!-- Spotify Embed -->
+            <div class="spotify-embed">
+                <iframe src="https://open.spotify.com/embed/track/7fRMmRAL9vN7eOCw1t03T3?utm_source=generator" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            </div>
+
+            <span class="signature">— With every good intention.</span>
         </div>
 
-        <!-- Final Scene -->
+        <div class="section classifieds">
+            <p><strong>FOUND:</strong> A safe anchor. Steady, patient, and ready to respect your space and comfort at all costs.</p>
+            <p style="margin-top: 10px;"><strong>WANTED:</strong> Just a moment for you to breathe and know that you are safe in this sanctuary.</p>
+        </div>
+
         <div class="section" id="final-trigger">
             <div id="final-scene">
                 <h2 class="headline" style="border:none; text-align:center;">Grateful Our Paths Crossed</h2>
-                <p class="content" style="text-align:center;">
-                    Whatever direction life takes us next, I’m simply happy that for a moment in time, we shared the same light.
-                </p>
+                <p class="content" style="text-align:center;">Whatever direction life takes us next, I am simply happy that for a moment in time, we shared the same light.</p>
                 
                 <div class="star-box">
                     <div id="s-left" class="star-ink"></div>
@@ -248,5 +257,6 @@
 
         document.querySelectorAll('.section').forEach(sec => observer.observe(sec));
     </script>
+
 </body>
 </html>
