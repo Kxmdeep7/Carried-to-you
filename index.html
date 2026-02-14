@@ -3,141 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>The Cupid Times</title>
+    <title>The Cupid Times - Special Edition</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Dancing+Script:wght@500&family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Dancing+Script:wght@600&family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap');
 
-        * { margin: 0; padding: 0; box-sizing: border-box; touch-action: none; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body, html { 
             height: 100%; width: 100%;
-            background: #f4f1ea; /* Vintage Paper Texture */
-            overflow: hidden; 
-            display: flex; justify-content: center; align-items: center;
+            background: #dcd7c9; /* Tabletop color */
+            font-family: 'EB Garamond', serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        #paper-container {
-            width: 90%; height: 95%;
-            border: 1px solid #d1ccc0;
+        /* PAPER TEXTURE & ANIMATION */
+        #paper {
+            width: 94%; max-width: 600px;
+            margin: 20px auto;
             background: #f4f1ea;
-            padding: 20px;
+            border: 1px solid #d1ccc0;
+            box-shadow: 5px 15px 40px rgba(0,0,0,0.15), inset 0 0 80px rgba(0,0,0,0.05);
+            padding: 30px 20px;
             position: relative;
-            box-shadow: inset 0 0 100px rgba(0,0,0,0.05);
-            display: flex; flex-direction: column;
+            min-height: 250vh; /* Allows for a long scroll experience */
         }
 
-        /* HEADER SECTION */
+        /* HEADERS */
         .masthead {
             text-align: center; border-bottom: 4px double #1a1a1a;
-            padding-bottom: 10px; margin-bottom: 10px;
+            padding-bottom: 10px; margin-bottom: 40px;
         }
-        .masthead h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 900; letter-spacing: -1px; }
-        .meta-data { 
+        .masthead h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 900; text-transform: uppercase; }
+        .meta-line { 
             display: flex; justify-content: space-between; 
-            font-family: 'EB Garamond', serif; font-size: 0.8rem; 
-            border-top: 1px solid #1a1a1a; padding: 2px 0;
-            text-transform: uppercase; font-weight: 700;
+            font-size: 0.8rem; border-top: 1px solid #1a1a1a; 
+            padding: 4px 0; text-transform: uppercase; font-weight: 700;
         }
 
-        /* DYNAMIC CONTENT LAYERS */
-        .news-scene {
-            position: absolute; top: 120px; left: 20px; right: 20px; bottom: 20px;
-            opacity: 0; transform: scale(0.98);
-            transition: opacity 1.5s ease, transform 2s ease;
-            visibility: hidden; display: flex; flex-direction: column;
+        /* SCROLL ANIMATION ELEMENTS */
+        .news-section {
+            margin-bottom: 80px;
+            opacity: 0; transform: translateY(30px);
+            transition: all 1.2s cubic-bezier(0.2, 1, 0.3, 1);
         }
-        .active-news { opacity: 1 !important; transform: scale(1) !important; visibility: visible !important; }
+        .reveal { opacity: 1 !important; transform: translateY(0px) !important; }
 
-        .headline { font-family: 'Playfair Display', serif; font-size: 2.2rem; line-height: 1.1; margin-bottom: 15px; color: #1a1a1a; border-bottom: 1px solid #1a1a1a; padding-bottom: 5px; }
-        .article { font-family: 'EB Garamond', serif; font-size: 1.25rem; line-height: 1.4; color: #333; column-count: 1; text-align: justify; }
-        .personal-note { font-family: 'Dancing Script', cursive; font-size: 1.6rem; color: #a33b3b; margin-top: 15px; display: block; }
+        .headline { font-family: 'Playfair Display', serif; font-size: 2.1rem; line-height: 1.1; margin-bottom: 15px; border-bottom: 1px solid #1a1a1a; padding-bottom: 10px; }
+        .sub-head { font-style: italic; font-size: 1.2rem; color: #444; margin-bottom: 20px; display: block; }
+        .content { font-size: 1.35rem; line-height: 1.6; color: #222; text-align: justify; }
+        .handwritten { font-family: 'Dancing Script', cursive; font-size: 1.9rem; color: #8b2635; margin-top: 20px; display: block; text-align: right; }
 
-        /* IMAGE STYLING (The Cupid Times Style) */
-        .news-photo {
-            width: 100%; height: 200px; background: #e0ddd5;
-            margin: 15px 0; border: 1px solid #1a1a1a;
-            display: flex; justify-content: center; align-items: center;
-            filter: grayscale(100%) contrast(110%);
+        /* THE STAR FINALE */
+        #star-container {
+            height: 150px; position: relative; width: 100%; margin: 40px 0;
+            border-top: 1px dashed #1a1a1a; border-bottom: 1px dashed #1a1a1a;
         }
+        .star {
+            position: absolute; width: 10px; height: 10px;
+            background: #1a1a1a; border-radius: 50%;
+            box-shadow: 0 0 15px 2px rgba(0,0,0,0.1);
+            top: 45%; opacity: 0;
+            transition: all 4s ease-out;
+        }
+        #star-l { left: 0; }
+        #star-r { right: 0; }
+        .converge-l { left: 45% !important; opacity: 1 !important; }
+        .converge-r { right: 45% !important; opacity: 1 !important; }
 
-        /* ANIMATIONS */
-        @keyframes inkFade { from { opacity: 0; } to { opacity: 1; } }
-        .ink-effect { animation: inkFade 3s ease-in; }
+        .footer-note { text-align: center; margin-top: 60px; font-style: italic; opacity: 0.6; }
 
     </style>
 </head>
 <body>
 
-    <div id="paper-container">
+    <div id="paper">
         <div class="masthead">
             <h1>The Cupid Times</h1>
-            <div class="meta-data">
-                <span>Kingsville Edition</span>
-                <span>Saturday, Feb 14, 2026</span>
-                <span>Price: Priceless</span>
+            <div class="meta-line">
+                <span>Kingsville, ON</span>
+                <span>Sat, Feb 14, 2026</span>
+                <span>Price: A Smile</span>
             </div>
         </div>
 
-        <div class="news-scene" id="n1">
-            <h2 class="headline">Breaking: Soft Winds Reported Across Region</h2>
-            <p class="article">Local reports suggest the air feels different today. Experts believe it’s carrying a silent message from someone who values you more than words can express.</p>
-            <div class="news-photo"><span style="font-size: 4rem;">🌿</span></div>
+        <div class="news-section">
+            <h2 class="headline">Breaking: If the wind feels softer today...</h2>
+            <span class="sub-head">Local experts suggest a message is traveling across the miles.</span>
+            <p class="content">It’s a quiet shift, but an unmistakable one. The air feels lighter today, carrying a sense of appreciation that doesn't need to be loud to be felt. It's a simple reminder that you are being thought of with immense care.</p>
         </div>
 
-        <div class="news-scene" id="n2">
-            <h2 class="headline">Even The Smallest Moments Bloom</h2>
-            <p class="article">In a fast-moving world, the smallest gestures remain the most beautiful. Your smile is the leading story in my heart every single day.</p>
-            <span class="personal-note">— Always remembered.</span>
+        <div class="news-section">
+            <h2 class="headline">Editorial: I Value What We Share</h2>
+            <span class="sub-head">"I am not here to ask for anything. I am here to value you."</span>
+            <p class="content">In this special edition, we record a statement of honesty. Every moment—the sweet and the bitter—has mattered deeply. Thank you for being a part of this story, exactly as you are.</p>
+            <span class="handwritten">— With intention, Deep.</span>
         </div>
 
-        <div class="news-scene" id="n3">
-            <h2 class="headline">Editorial: A Statement of Fact</h2>
-            <p class="article">I am not here to ask for anything. This is simply a public record of my honesty: I value what we share, exactly as it is. 💛</p>
-            <div class="news-photo" style="height: 120px;"><span style="font-size: 3rem;">🗞️</span></div>
+        <div class="news-section">
+            <h2 class="headline">Discovery: A Token of Peace Found</h2>
+            <span class="sub-head">A small crystal gift intended to reflect your own light.</span>
+            <p class="content">A rare discovery was made today: a small gift that carries no pressure, only peace. It exists simply to bring a smile to your face—a sparkling anchor in a busy world.</p>
         </div>
 
-        <div class="news-scene" id="n4">
-            <h2 class="headline">Chronicle: The Sweet & The Bitter</h2>
-            <p class="article">Every day we've navigated through the ups and downs has mattered. Thank you for being a part of this story.</p>
+        <div class="news-section">
+            <h2 class="headline">Official Decree: A Sanctuary for You</h2>
+            <span class="sub-head">A lasting promise to respect space, peace, and comfort.</span>
+            <p class="content">This publication confirms a standing commitment: to always respect your space and your individual peace. Your comfort is the highest priority, today and every day following.</p>
         </div>
 
-        <div class="news-scene" id="n5">
-            <h2 class="headline">A Token Of Appreciation Discovered</h2>
-            <p class="article">A small gift found its way here today. No pressure, no demands—just a reason for you to smile as bright as crystal.</p>
-            <div class="news-photo"><span style="font-size: 4rem;">🧸</span></div>
-        </div>
-
-        <div class="news-scene" id="n6">
-            <h2 class="headline">Official Decree: Space & Comfort Guaranteed</h2>
-            <p class="article">I promise to always respect your peace and your space. Your comfort is the highest priority in this sanctuary. 🤍</p>
-        </div>
-
-        <div class="news-scene" id="n7">
-            <h2 class="headline" style="border:none; text-align:center;">Grateful We Crossed Paths</h2>
-            <p class="article" style="text-align:center;">Whatever direction life takes us, I’m simply happy to have known you.</p>
-            <div class="news-photo" style="background:none; border:none; height:100px;">
-                <span style="font-size:3rem; filter: drop-shadow(0 0 10px gold);">✨ ✨</span>
+        <div class="news-section" id="final-trigger">
+            <h2 class="headline" style="text-align:center; border:none;">Grateful We Crossed Paths</h2>
+            <p class="content" style="text-align:center;">Whatever direction life takes us, I’m simply happy to have met you along the way.</p>
+            
+            <div id="star-container">
+                <div id="star-l" class="star"></div>
+                <div id="star-r" class="star"></div>
             </div>
-            <p class="personal-note" style="text-align:center; font-size: 2rem;">I’ll be here — quietly, always.</p>
+
+            <p class="handwritten" style="text-align:center; font-size: 2.3rem;">I’ll be here — quietly, always.</p>
         </div>
+
+        <div class="footer-note">End of Special Edition</div>
     </div>
 
     <script>
-        window.onload = () => {
-            const news = [1,2,3,4,5,6,7].map(n => document.getElementById(`n${n}`));
-            let step = 0;
-
-            const readPaper = () => {
-                if (step > 0) news[step-1].classList.remove('active-news');
-                if (step < news.length) {
-                    news[step].classList.add('active-news');
-                    step++;
-                    // Each "article" stays for 6 seconds to allow reading
-                    setTimeout(readPaper, 6000);
-                }
-            };
-            readPaper();
+        // Scroll Animation Logic
+        const observerOptions = {
+            threshold: 0.2
         };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal');
+                    
+                    // Trigger stars if the final section is reached
+                    if (entry.target.id === 'final-trigger') {
+                        setTimeout(() => {
+                            document.getElementById('star-l').classList.add('converge-l');
+                            setTimeout(() => {
+                                document.getElementById('star-r').classList.add('converge-r');
+                            }, 1000);
+                        }, 800);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.news-section').forEach(section => {
+            observer.observe(section);
+        });
     </script>
 </body>
 </html>
