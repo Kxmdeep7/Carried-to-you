@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>A Quiet Valentine</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; touch-action: none; }
+        
+        body, html { 
+            height: 100%; width: 100%;
+            background: #fdfaf5; 
+            overflow: hidden; 
+            font-family: 'Dancing Script', cursive; 
+            display: flex; justify-content: center; align-items: center;
+            transition: background 4s ease-in-out;
+            text-rendering: optimizeLegibility;
+        }
+
+        #main-container { width: 100%; height: 100%; position: relative; display: flex; justify-content: center; align-items: center; }
+
+        /* HEART CONTAINER FOR HER STYLE */
+        .heart-box {
+            position: relative; margin: 20px auto; width: 260px; height: 260px;
+            background: rgba(255, 143, 163, 0.05);
+            border-radius: 50%; border: 1.5px solid rgba(255, 143, 163, 0.3);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            animation: heartGlow 4s ease-in-out infinite;
+        }
+        @keyframes heartGlow {
+            0%, 100% { box-shadow: 0 0 10px rgba(255,143,163,0.1); transform: scale(1); }
+            50% { box-shadow: 0 0 25px rgba(255,143,163,0.3); transform: scale(1.02); }
+        }
+
+        /* TEXT ANIMATIONS */
+        .text-layer {
+            position: absolute; width: 85%; text-align: center;
+            font-size: 2.2rem; color: #4a4a4a; opacity: 0;
+            transition: opacity 1.5s ease; z-index: 50; line-height: 1.6; visibility: hidden;
+        }
+        .visible { opacity: 1 !important; visibility: visible !important; }
+
+        /* FINAL PAGE PULSE */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.04); opacity: 0.9; }
+        }
+        .pulse-text { animation: pulse 4s ease-in-out infinite; }
+
+        /* NATURE ELEMENTS */
+        .petal {
+            position: absolute; width: 14px; height: 14px; background: #ff8fa3;
+            border-radius: 100% 0 100% 100%; opacity: 0; z-index: 5;
+            box-shadow: 0 0 10px rgba(255, 143, 163, 0.6);
+        }
+        @keyframes shower {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.8; }
+            100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* OVERLAYS */
+        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 4s ease; }
+        #sunset { background: linear-gradient(to bottom, #2c3e50 0%, #fd746c 100%); z-index: 1; }
+        #midnight { background: radial-gradient(circle at 75% 85%, rgba(255,255,255,0.15) 0%, #05080a 70%); z-index: 2; }
+
+        /* BIRDS */
+        #nature-scene { position: absolute; width: 100%; height: 100%; pointer-events: none; z-index: 10; }
+        .branch-svg { position: absolute; bottom: 12%; right: -10px; width: 360px; opacity: 0; transition: opacity 4s ease; }
+        .bird-svg { position: absolute; width: 52px; fill: #fff; opacity: 0; transition: all 5s ease-out; }
+        .landed-1 { top: calc(88% - 142px) !important; left: calc(100% - 210px) !important; opacity: 1 !important; }
+        .landed-2 { top: calc(88% - 146px) !important; left: calc(100% - 160px) !important; opacity: 1 !important; transform: scaleX(-1); }
+    </style>
+</head>
+<body>
+
+    <div id="sunset" class="overlay"></div>
+    <div id="midnight" class="overlay"></div>
+
+    <div id="main-container">
+        <div class="text-layer" id="p1">
+            A Quiet Valentine 🌿<br>
+            <span style="font-size:1.2rem; opacity: 0.8;">Not loud. Just moments I appreciated with you.</span>
+        </div>
+
+        <div class="text-layer" id="p2">
+            Even small things can feel beautiful 🌸<br>
+            <span style="font-size:1.3rem; opacity: 0.7;">— like your smile today.</span>
+        </div>
+
+        <div class="text-layer" id="p3">
+            Not a proposal. Just honesty —<br>I value what we have 💛
+        </div>
+
+        <div class="text-layer" id="p4">
+            Thank you for the sweet and bitter moments — both mattered 🍫
+        </div>
+
+        <div class="text-layer" id="p5">
+            <div class="heart-box">
+                <p style="padding: 20px;">A small gift. No pressure. Just a smile 🌿</p>
+                <span style="font-size: 0.9rem; opacity: 0.5;">Your turn ❤️</span>
+            </div>
+        </div>
+
+        <div class="text-layer" id="p6">
+            I promise to respect your space<br>and comfort 🤍
+        </div>
+
+        <div class="text-layer" id="p7" style="color:#fdfaf5">
+            Even in silence, comfort exists 🌙
+        </div>
+
+        <div class="text-layer pulse-text" id="p8" style="color:#fdfaf5">
+            Whatever direction life takes us 🌿✨<br>
+            I’m grateful we crossed paths.<br>
+            <span style="font-size: 1.2rem; opacity: 0.8;">I’ll be here — quietly, always.</span>
+        </div>
+
+        <div id="nature-scene">
+            <svg class="branch-svg" id="branch" viewBox="0 0 200 120">
+                <path d="M200,105 C170,95 140,115 100,100 C60,85 30,90 0,75" stroke="#1a1108" stroke-width="8" fill="none" stroke-linecap="round"/>
+                <path d="M140,105 C135,75 125,65 110,60" stroke="#1a1108" stroke-width="5" fill="none" stroke-linecap="round"/>
+            </svg>
+            <svg id="b1" class="bird-svg" viewBox="0 0 24 24"><path d="M21,12C21,12 18,5 11,5C10,5 5,7 3,11C2,13 3,15 5,16C4,17 3,18 2,19C5,19 7,17 8,16C11,17 21,12 21,12Z" /></svg>
+            <svg id="b2" class="bird-svg" viewBox="0 0 24 24"><path d="M21,12C21,12 18,5 11,5C10,5 5,7 3,11C2,13 3,15 5,16C4,17 3,18 2,19C5,19 7,17 8,16C11,17 21,12 21,12Z" /></svg>
+        </div>
+    </div>
+
+    <script>
+        function spawnPetal() {
+            const p = document.createElement('div');
+            p.className = 'petal';
+            p.style.left = Math.random() * 100 + "vw";
+            p.style.animation = `shower ${Math.random() * 3 + 4}s linear forwards`;
+            document.body.appendChild(p);
+            setTimeout(() => p.remove(), 7000);
+        }
+
+        window.onload = () => {
+            const layers = [1,2,3,4,5,6,7,8].map(n => document.getElementById(`p${n}`));
+            const sunset = document.getElementById('sunset');
+            const midnight = document.getElementById('midnight');
+            let step = 0;
+
+            const nextStep = () => {
+                if (step > 0) layers[step-1].classList.remove('visible');
+                if (step < layers.length) {
+                    layers[step].classList.add('visible');
+                    
+                    if (step === 1) setInterval(spawnPetal, 200);
+                    if (step === 3) sunset.style.opacity = "1";
+                    if (step === 6) midnight.style.opacity = "1";
+                    if (step === 7) {
+                        setTimeout(() => {
+                            document.getElementById('branch').style.opacity = "1";
+                            document.getElementById('b1').style.opacity = "1";
+                            document.getElementById('b2').style.opacity = "1";
+                            document.getElementById('b1').classList.add('landed-1');
+                            setTimeout(() => document.getElementById('b2').classList.add('landed-2'), 1500);
+                        }, 2000);
+                    }
+
+                    // P2 (Rose Day) gets a slightly longer display time (7s)
+                    let duration = (step === 1) ? 7000 : 5000;
+                    step++;
+                    setTimeout(nextStep, duration);
+                }
+            };
+            nextStep();
+        };
+    </script>
+</body>
+</html>
