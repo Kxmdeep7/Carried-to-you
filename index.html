@@ -1,262 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Cupid Times - Special Edition</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Dancing+Script:wght@600&family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Cupid Times - Special Edition</title>
 
-        /* RESET & BASE */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body, html { 
-            background: #dcd7c9; 
-            font-family: 'EB Garamond', serif;
-            color: #1a1a1a;
-            line-height: 1.4;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Dancing+Script:wght@600&family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap');
 
-        /* THE PAPER CONTAINER */
-        #news-container {
-            width: 95%;
-            max-width: 500px;
-            margin: 20px auto;
-            background: #f4f1ea;
-            border: 1px solid #d1ccc0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2), inset 0 0 100px rgba(0,0,0,0.05);
-            padding: 30px 15px;
-            position: relative;
-        }
+*{margin:0;padding:0;box-sizing:border-box;}
 
-        /* MASTHEAD */
-        .masthead {
-            text-align: center;
-            border-bottom: 4px double #1a1a1a;
-            margin-bottom: 25px;
-            padding-bottom: 10px;
-        }
-        .masthead h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-        }
-        .meta-data {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            font-weight: 700;
-            border-top: 1px solid #1a1a1a;
-            padding-top: 4px;
-            margin-top: 4px;
-        }
+body{
+    background:#dcd7c9;
+    font-family:'EB Garamond',serif;
+    color:#1a1a1a;
+    line-height:1.5;
+    overflow-x:hidden;
+}
 
-        /* ARTICLE SECTIONS */
-        .section {
-            margin-bottom: 40px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 1s ease-out;
-        }
-        .reveal { opacity: 1 !important; transform: translateY(0) !important; }
+#news-container{
+    width:95%;
+    max-width:500px;
+    margin:20px auto;
+    background:#f4f1ea;
+    border:1px solid #d1ccc0;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2), inset 0 0 80px rgba(0,0,0,0.05);
+    padding:30px 15px;
+}
 
-        .headline {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            line-height: 1.1;
-            margin-bottom: 12px;
-            border-bottom: 1px solid #1a1a1a;
-            padding-bottom: 5px;
-        }
-        .sub-headline {
-            font-family: 'EB Garamond', serif;
-            font-style: italic;
-            font-size: 1.1rem;
-            color: #444;
-            margin-bottom: 15px;
-            display: block;
-        }
-        .content {
-            font-size: 1.15rem;
-            text-align: justify;
-            margin-bottom: 15px;
-            hyphens: auto;
-        }
+/* MASTHEAD */
+.masthead{
+    text-align:center;
+    border-bottom:4px double #1a1a1a;
+    margin-bottom:25px;
+    padding-bottom:10px;
+}
+.masthead h1{
+    font-family:'Playfair Display',serif;
+    font-size:2.5rem;
+    text-transform:uppercase;
+}
+.meta-data{
+    display:flex;
+    justify-content:space-between;
+    font-size:0.7rem;
+    text-transform:uppercase;
+    font-weight:700;
+    border-top:1px solid #1a1a1a;
+    padding-top:5px;
+    margin-top:5px;
+}
 
-        /* SIDEBARS & ADS */
-        .column-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-        .editorial-box {
-            border: 1px solid #1a1a1a;
-            padding: 15px;
-            background: rgba(0,0,0,0.02);
-            font-style: italic;
-        }
-        .classifieds {
-            border-top: 1px dashed #1a1a1a;
-            padding-top: 15px;
-            font-size: 0.95rem;
-        }
-        .ad-spot {
-            border: 2px solid #1a1a1a;
-            text-align: center;
-            padding: 10px;
-            margin: 20px 0;
-            font-family: 'Playfair Display', serif;
-            text-transform: uppercase;
-        }
+/* SECTIONS */
+.section{
+    margin-bottom:40px;
+    opacity:0;
+    transform:translateY(25px);
+    transition:all 1s ease;
+}
+.reveal{
+    opacity:1;
+    transform:translateY(0);
+}
 
-        /* HANDWRITTEN SIGNATURES */
-        .signature {
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.8rem;
-            color: #8b2635;
-            display: block;
-            text-align: right;
-            margin-top: 10px;
-        }
+.headline{
+    font-family:'Playfair Display',serif;
+    font-size:1.8rem;
+    margin-bottom:10px;
+    border-bottom:1px solid #1a1a1a;
+    padding-bottom:5px;
+}
+.sub-headline{
+    font-style:italic;
+    font-size:1rem;
+    color:#444;
+    margin-bottom:12px;
+    display:block;
+}
+.content{
+    font-size:1.05rem;
+    text-align:justify;
+    margin-bottom:15px;
+}
 
-        /* FINAL CELESTIAL ALIGNMENT */
-        #final-scene {
-            text-align: center;
-            padding: 60px 0;
-            border-top: 3px double #1a1a1a;
-        }
-        .star-box {
-            height: 120px;
-            position: relative;
-            width: 100%;
-            margin: 20px 0;
-        }
-        .star-ink {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: #1a1a1a;
-            border-radius: 50%;
-            top: 50%;
-            opacity: 0;
-            transition: all 5s ease-in-out;
-        }
-        #s-left { left: 0; }
-        #s-right { right: 0; }
-        .align-l { left: 45% !important; opacity: 1 !important; }
-        .align-r { right: 45% !important; opacity: 1 !important; }
+/* Editorial box */
+.editorial-box{
+    border:1px solid #1a1a1a;
+    padding:15px;
+    background:rgba(0,0,0,0.02);
+    font-style:italic;
+    margin-bottom:20px;
+}
 
-        /* BUTTON */
-        .smile-button {
-            display: inline-block;
-            background: #ff8fa3;
-            color: #fff;
-            padding: 8px 15px;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 10px;
-            font-weight: bold;
-            text-decoration: none;
-            font-family: 'EB Garamond', serif;
-        }
+/* Spotify */
+.spotify-embed{
+    text-align:center;
+    margin-top:15px;
+}
 
-        /* SPOTIFY EMBED */
-        .spotify-embed {
-            margin-top: 15px;
-            text-align: center;
-        }
-    </style>
+/* Video */
+.video-section{
+    margin-top:30px;
+    text-align:center;
+    opacity:0;
+    transform:translateY(20px);
+    transition:all 1.2s ease;
+}
+.video-section.reveal-video{
+    opacity:1;
+    transform:translateY(0);
+}
+.video-intro{
+    font-style:italic;
+    margin-bottom:12px;
+    font-size:1rem;
+    opacity:0.85;
+}
+.valentine-video{
+    width:100%;
+    max-width:420px;
+    border:2px solid #1a1a1a;
+    border-radius:12px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Signature */
+.signature{
+    font-family:'Dancing Script',cursive;
+    font-size:1.8rem;
+    color:#8b2635;
+    display:block;
+    text-align:right;
+    margin-top:15px;
+}
+
+/* Footer */
+.footer-note{
+    text-align:center;
+    font-style:italic;
+    opacity:0.4;
+    font-size:0.8rem;
+    margin-top:40px;
+}
+</style>
 </head>
+
 <body>
 
-    <div id="news-container">
-        <div class="masthead">
-            <h1>The Cupid Times</h1>
-            <div class="meta-data">
-                <span>The Silent Shore Edition</span>
-                <span>Sat, Feb 14, 2026</span>
-                <span>One Heart Only</span>
-            </div>
-        </div>
+<div id="news-container">
 
-        <div class="section">
-            <h2 class="headline">Atmospheric Shift: Winds Reported Softer Today</h2>
-            <span class="sub-headline">Reports suggest the breeze carries an unspoken message.</span>
-            <p class="content">If the air feels different as you hold this page, it is because every unspoken thought has been recorded here. We’ve navigated through "half there" moments and heavy silences, but today the lead story is simple: I am still here, and I still value you exactly as you are.</p>
-        </div>
+<div class="masthead">
+    <h1>The Cupid Times</h1>
+    <div class="meta-data">
+        <span>Silent Shore Edition</span>
+        <span>Feb 14, 2026</span>
+        <span>One Heart Only</span>
+    </div>
+</div>
 
-        <div class="section">
-            <h2 class="headline">Memory: Earlier This Week</h2>
-            <p class="content">Earlier this week, a claim was made regarding an ID card. While certainty was high, investigations proved the other party was correct. A formal apology was issued, accompanied by a playfully dramatic head tap. Witnesses describe the atmosphere as "effortlessly calm."</p>
-        </div>
+<!-- Opening -->
+<div class="section">
+    <h2 class="headline">Atmospheric Shift Reported</h2>
+    <span class="sub-headline">The breeze feels softer today.</span>
+    <p class="content">
+        If the air feels different while reading this, it’s because something unspoken has finally been written. 
+        No pressure. No expectations. Just something honest — from me to you.
+    </p>
+</div>
 
-        <div class="section column-grid">
-            <div class="editorial-box">
-                <p>"Vulnerability is the only way to build a bridge where distance once was. Today, we choose to speak from the heart."</p>
-            </div>
-            <div class="ad-spot">
-                <p style="font-size: 0.7rem;">For Your Peace Of Mind</p>
-                <p>😊 SMILE EMOJI</p>
-                <p style="font-size: 0.6rem;">Now Available For A Smile</p>
-            </div>
-        </div>
+<!-- Memory -->
+<div class="section">
+    <h2 class="headline">Memory: Earlier This Week</h2>
+    <p class="content">
+        Earlier this week, a claim was made regarding an ID card. Confidence levels were high. 
+        Investigations proved otherwise. A formal apology followed — including a slightly dramatic head tap. 
+        Witnesses described the moment as “effortlessly calm.”
+    </p>
+</div>
 
-        <div class="section">
-            <h2 class="headline">Editorial: Personal Note</h2>
-            <p class="content">All I can say is thank you for making me feel comfortable in my own skin. I never have to pretend or wear a mask around you, and I've never felt like this before. Being with you has been the most freeing, healing, and whole experience of my life so far.</p>
+<!-- Personal Note -->
+<div class="section">
+    <h2 class="headline">Editorial: Personal Note</h2>
+    <p class="content">
+        All I can say is thank you for making me feel comfortable in my own skin. 
+        I never have to pretend or wear a mask around you, and I've never felt like this before. 
+        Being with you has been the most freeing, healing, and whole experience of my life so far.
+    </p>
 
-            <!-- Spotify Embed -->
-            <div class="spotify-embed">
-                <iframe src="https://open.spotify.com/embed/track/7fRMmRAL9vN7eOCw1t03T3?utm_source=generator" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-            </div>
-
-            <span class="signature">— With every good intention.</span>
-        </div>
-
-        <div class="section classifieds">
-            <p><strong>FOUND:</strong> A safe anchor. Steady, patient, and ready to respect your space and comfort at all costs.</p>
-            <p style="margin-top: 10px;"><strong>WANTED:</strong> Just a moment for you to breathe and know that you are safe in this sanctuary.</p>
-        </div>
-
-        <div class="section" id="final-trigger">
-            <div id="final-scene">
-                <h2 class="headline" style="border:none; text-align:center;">Grateful Our Paths Crossed</h2>
-                <p class="content" style="text-align:center;">Whatever direction life takes us next, I am simply happy that for a moment in time, we shared the same light.</p>
-                
-                <div class="star-box">
-                    <div id="s-left" class="star-ink"></div>
-                    <div id="s-right" class="star-ink"></div>
-                </div>
-
-                <p class="signature" style="text-align:center; font-size: 2.3rem;">I’ll be here — quietly, always.</p>
-            </div>
-        </div>
-
-        <p style="text-align:center; font-style:italic; opacity:0.4; font-size: 0.8rem;">Special Edition - Feb 14, 2026</p>
+    <!-- Spotify -->
+    <div class="spotify-embed">
+        <iframe src="https://open.spotify.com/embed/track/7fRMmRAL9vN7eOCw1t03T3"
+        width="300" height="80" frameborder="0"
+        allowtransparency="true" allow="encrypted-media"></iframe>
     </div>
 
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('reveal');
-                    if (entry.target.id === 'final-trigger') {
-                        setTimeout(() => {
-                            document.getElementById('s-left').classList.add('align-l');
-                            setTimeout(() => {
-                                document.getElementById('s-right').classList.add('align-r');
-                            }, 1500);
-                        }, 1000);
-                    }
-                }
-            });
-        }, { threshold: 0.1 });
+    <!-- Video -->
+    <div class="video-section" id="video-block">
+        <p class="video-intro">
+            Before I say anything more… I wanted to ask you something myself. 💌
+        </p>
 
-        document.querySelectorAll('.section').forEach(sec => observer.observe(sec));
-    </script>
+        <video class="valentine-video" controls>
+            <source src="valentine.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <span class="signature">— With every good intention.</span>
+</div>
+
+<p class="footer-note">Special Edition</p>
+
+</div>
+
+<script>
+const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add('reveal');
+        }
+    });
+},{threshold:0.1});
+
+document.querySelectorAll('.section').forEach(sec=>{
+    observer.observe(sec);
+});
+
+/* Separate observer for video fade */
+const videoObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add('reveal-video');
+        }
+    });
+},{threshold:0.3});
+
+videoObserver.observe(document.getElementById('video-block'));
+</script>
 
 </body>
 </html>
