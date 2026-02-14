@@ -1,118 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Quiet Valentine 🌿</title>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&display=swap" rel="stylesheet">
-<style>
-* { margin:0; padding:0; box-sizing:border-box; touch-action:none; }
-html, body { height:100%; width:100%; font-family:'Dancing Script', cursive; overflow:hidden; background:#fdfaf5; display:flex; justify-content:center; align-items:center; transition: background 6s ease-in-out; }
-#container { width:100%; height:100%; position:relative; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>The Cupid Times</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Dancing+Script:wght@500&family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap');
 
-.bg-layer { position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; transition:opacity 5s ease-in-out; z-index:1; }
-#morning { background: linear-gradient(180deg,#a3d9ff 0%,#fff9e5 100%); }
-#sunset { background: linear-gradient(180deg,#ff9a8b 0%,#3a506b 100%); }
-#night { background: radial-gradient(circle at 75% 85%, rgba(255,255,255,0.12) 0%, #020405 85%); }
+        * { margin: 0; padding: 0; box-sizing: border-box; touch-action: none; }
+        
+        body, html { 
+            height: 100%; width: 100%;
+            background: #f4f1ea; /* Vintage Paper Texture */
+            overflow: hidden; 
+            display: flex; justify-content: center; align-items: center;
+        }
 
-.text-scene { position:absolute; width:85%; left:7.5%; text-align:center; font-size:2.2rem; color:#4a4a4a; opacity:0; transform:translateY(30px); transition:opacity 2s ease, transform 2s ease; z-index:10; visibility:hidden; }
-.active { opacity:1 !important; transform:translateY(0) !important; visibility:visible !important; }
+        #paper-container {
+            width: 90%; height: 95%;
+            border: 1px solid #d1ccc0;
+            background: #f4f1ea;
+            padding: 20px;
+            position: relative;
+            box-shadow: inset 0 0 100px rgba(0,0,0,0.05);
+            display: flex; flex-direction: column;
+        }
 
-.heart-container { width:300px; height:300px; margin:0 auto; border-radius:50%; display:flex; justify-content:center; align-items:center; flex-direction:column; background: rgba(255,143,163,0.05); border:2px solid rgba(255,143,163,0.3); animation:heartbeat 3s ease-in-out infinite; }
-@keyframes heartbeat {
-  0%,100%{transform:scale(1);}
-  50%{transform:scale(1.05);}
-}
+        /* HEADER SECTION */
+        .masthead {
+            text-align: center; border-bottom: 4px double #1a1a1a;
+            padding-bottom: 10px; margin-bottom: 10px;
+        }
+        .masthead h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 900; letter-spacing: -1px; }
+        .meta-data { 
+            display: flex; justify-content: space-between; 
+            font-family: 'EB Garamond', serif; font-size: 0.8rem; 
+            border-top: 1px solid #1a1a1a; padding: 2px 0;
+            text-transform: uppercase; font-weight: 700;
+        }
 
-.petal { position:absolute; font-size:14px; pointer-events:none; opacity:0; animation:petalFall linear forwards; }
-@keyframes petalFall {
-  0%{transform:translateY(-10vh) rotate(0deg); opacity:0;}
-  20%{opacity:0.8;}
-  100%{transform:translateY(110vh) rotate(720deg); opacity:0;}
-}
+        /* DYNAMIC CONTENT LAYERS */
+        .news-scene {
+            position: absolute; top: 120px; left: 20px; right: 20px; bottom: 20px;
+            opacity: 0; transform: scale(0.98);
+            transition: opacity 1.5s ease, transform 2s ease;
+            visibility: hidden; display: flex; flex-direction: column;
+        }
+        .active-news { opacity: 1 !important; transform: scale(1) !important; visibility: visible !important; }
 
-#gift { position:absolute; bottom:15%; right:10%; width:80px; cursor:pointer; opacity:0; transition:all 2s ease; z-index:20; }
-#gift:hover { transform:scale(1.2) rotate(-15deg); }
+        .headline { font-family: 'Playfair Display', serif; font-size: 2.2rem; line-height: 1.1; margin-bottom: 15px; color: #1a1a1a; border-bottom: 1px solid #1a1a1a; padding-bottom: 5px; }
+        .article { font-family: 'EB Garamond', serif; font-size: 1.25rem; line-height: 1.4; color: #333; column-count: 1; text-align: justify; }
+        .personal-note { font-family: 'Dancing Script', cursive; font-size: 1.6rem; color: #a33b3b; margin-top: 15px; display: block; }
 
-.star { position:absolute; width:10px; height:10px; border-radius:50%; background:#fff; box-shadow:0 0 25px 8px rgba(255,255,255,0.9); opacity:0; }
-.star.show { opacity:1 !important; }
+        /* IMAGE STYLING (The Cupid Times Style) */
+        .news-photo {
+            width: 100%; height: 200px; background: #e0ddd5;
+            margin: 15px 0; border: 1px solid #1a1a1a;
+            display: flex; justify-content: center; align-items: center;
+            filter: grayscale(100%) contrast(110%);
+        }
 
-</style>
+        /* ANIMATIONS */
+        @keyframes inkFade { from { opacity: 0; } to { opacity: 1; } }
+        .ink-effect { animation: inkFade 3s ease-in; }
+
+    </style>
 </head>
 <body>
-<div id="container">
 
-  <div id="morning" class="bg-layer"></div>
-  <div id="sunset" class="bg-layer"></div>
-  <div id="night" class="bg-layer"></div>
+    <div id="paper-container">
+        <div class="masthead">
+            <h1>The Cupid Times</h1>
+            <div class="meta-data">
+                <span>Kingsville Edition</span>
+                <span>Saturday, Feb 14, 2026</span>
+                <span>Price: Priceless</span>
+            </div>
+        </div>
 
-  <div id="s1" class="text-scene">A Quiet Valentine 🌿<br><span style="font-size:1.3rem;opacity:0.8;">Not loud. Just moments I appreciated with you.</span></div>
-  <div id="s2" class="text-scene">Even small things can feel beautiful 🌸<br><span style="font-size:1.2rem;opacity:0.7;">— like your smile today.</span></div>
-  <div id="s3" class="text-scene">Not a proposal. Just honesty — I value what we have 💛</div>
-  <div id="s4" class="text-scene">The sweet and the bitter moments 🍫 mattered.</div>
-  <div id="s5" class="text-scene">
-    <div class="heart-container" id="heart">
-      <p>Your heart words 🌸</p>
-      <span style="font-size:1rem; opacity:0.6;">Hover here to reveal a small gift 🎁</span>
+        <div class="news-scene" id="n1">
+            <h2 class="headline">Breaking: Soft Winds Reported Across Region</h2>
+            <p class="article">Local reports suggest the air feels different today. Experts believe it’s carrying a silent message from someone who values you more than words can express.</p>
+            <div class="news-photo"><span style="font-size: 4rem;">🌿</span></div>
+        </div>
+
+        <div class="news-scene" id="n2">
+            <h2 class="headline">Even The Smallest Moments Bloom</h2>
+            <p class="article">In a fast-moving world, the smallest gestures remain the most beautiful. Your smile is the leading story in my heart every single day.</p>
+            <span class="personal-note">— Always remembered.</span>
+        </div>
+
+        <div class="news-scene" id="n3">
+            <h2 class="headline">Editorial: A Statement of Fact</h2>
+            <p class="article">I am not here to ask for anything. This is simply a public record of my honesty: I value what we share, exactly as it is. 💛</p>
+            <div class="news-photo" style="height: 120px;"><span style="font-size: 3rem;">🗞️</span></div>
+        </div>
+
+        <div class="news-scene" id="n4">
+            <h2 class="headline">Chronicle: The Sweet & The Bitter</h2>
+            <p class="article">Every day we've navigated through the ups and downs has mattered. Thank you for being a part of this story.</p>
+        </div>
+
+        <div class="news-scene" id="n5">
+            <h2 class="headline">A Token Of Appreciation Discovered</h2>
+            <p class="article">A small gift found its way here today. No pressure, no demands—just a reason for you to smile as bright as crystal.</p>
+            <div class="news-photo"><span style="font-size: 4rem;">🧸</span></div>
+        </div>
+
+        <div class="news-scene" id="n6">
+            <h2 class="headline">Official Decree: Space & Comfort Guaranteed</h2>
+            <p class="article">I promise to always respect your peace and your space. Your comfort is the highest priority in this sanctuary. 🤍</p>
+        </div>
+
+        <div class="news-scene" id="n7">
+            <h2 class="headline" style="border:none; text-align:center;">Grateful We Crossed Paths</h2>
+            <p class="article" style="text-align:center;">Whatever direction life takes us, I’m simply happy to have known you.</p>
+            <div class="news-photo" style="background:none; border:none; height:100px;">
+                <span style="font-size:3rem; filter: drop-shadow(0 0 10px gold);">✨ ✨</span>
+            </div>
+            <p class="personal-note" style="text-align:center; font-size: 2rem;">I’ll be here — quietly, always.</p>
+        </div>
     </div>
-  </div>
-  <div id="s6" class="text-scene">I promise to respect your space and comfort 🤍</div>
-  <div id="s7" class="text-scene" style="color:#fff;">Even in silence, comfort exists 🌙</div>
-  <div id="s8" class="text-scene pulse" style="color:#fff;">Whatever direction life takes us 🌸✨<br>I’m grateful we crossed paths.<br><span style="opacity:0.8;">I’ll be here — quietly, always.</span></div>
 
-  <img src="https://i.postimg.cc/SKk2C0zP/gift.png" id="gift" title="For You"/>
+    <script>
+        window.onload = () => {
+            const news = [1,2,3,4,5,6,7].map(n => document.getElementById(`n${n}`));
+            let step = 0;
 
-  <div id="star1" class="star"></div>
-  <div id="star2" class="star"></div>
-</div>
-
-<script>
-const scenes = [s1,s2,s3,s4,s5,s6,s7,s8];
-let step = 0;
-
-function showScene(){
-  if(step>0) scenes[step-1].classList.remove('active');
-  if(step<scenes.length){
-    scenes[step].classList.add('active');
-
-    if(step===1){ // petals animation
-      setInterval(()=>{
-        const petal=document.createElement('div');
-        petal.className='petal';
-        const words=['🌸','💌','💛','🤍','🌿'];
-        petal.innerText = words[Math.floor(Math.random()*words.length)];
-        petal.style.left=Math.random()*100+'vw';
-        petal.style.animationDuration=(Math.random()*3+4)+'s';
-        document.getElementById('container').appendChild(petal);
-        setTimeout(()=>petal.remove(),7000);
-      },350);
-    }
-
-    if(step===3){ document.getElementById('sunset').style.opacity=1; }
-    if(step===6){ 
-      document.getElementById('night').style.opacity=1;
-      setInterval(()=>{
-        const star=document.createElement('div');
-        star.className='star show';
-        star.style.top=Math.random()*50+'vh';
-        star.style.left=Math.random()*100+'vw';
-        document.getElementById('container').appendChild(star);
-        setTimeout(()=>star.remove(),7000);
-      },600);
-    }
-
-    step++;
-    setTimeout(showScene, step===1?7500:5500);
-  }
-}
-window.onload = showScene;
-
-// gift reveal
-document.getElementById('heart').addEventListener('mouseenter',()=>{
-  const gift=document.getElementById('gift');
-  gift.style.opacity=1;
-});
-
-</script>
+            const readPaper = () => {
+                if (step > 0) news[step-1].classList.remove('active-news');
+                if (step < news.length) {
+                    news[step].classList.add('active-news');
+                    step++;
+                    // Each "article" stays for 6 seconds to allow reading
+                    setTimeout(readPaper, 6000);
+                }
+            };
+            readPaper();
+        };
+    </script>
 </body>
 </html>
