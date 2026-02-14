@@ -1,318 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>The Cupid Times - Special Edition</title>
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Dancing+Script:wght@600&family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>The Cupid Times - Special Edition</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Dancing+Script:wght@600&family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap');
 
-    /* RESET & BASE */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body, html { 
-        background: #dcd7c9;
-        font-family: 'EB Garamond', serif;
-        color: #1a1a1a;
-        line-height: 1.4;
-        overflow-x: hidden;
-        -webkit-font-smoothing: antialiased;
-    }
+        /* RESET & BASE */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html { 
+            background: #dcd7c9; 
+            font-family: 'EB Garamond', serif;
+            color: #1a1a1a;
+            line-height: 1.5;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
 
-    /* THE PAPER CONTAINER */
-    #news-container {
-        width: 95%;
-        max-width: 550px;
-        margin: 20px auto;
-        background: #f4f1ea;
-        border: 1px solid #d1ccc0;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2), inset 0 0 100px rgba(0,0,0,0.05);
-        padding: 30px 15px;
-        position: relative;
-    }
+        /* THE PAPER CONTAINER */
+        #news-container {
+            width: 95%;
+            max-width: 550px;
+            margin: 20px auto;
+            background: #f4f1ea;
+            border: 1px solid #d1ccc0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2), inset 0 0 100px rgba(0,0,0,0.05);
+            padding: 30px 20px;
+            position: relative;
+        }
 
-    /* MASTHEAD */
-    .masthead {
-        text-align: center;
-        border-bottom: 4px double #1a1a1a;
-        margin-bottom: 25px;
-        padding-bottom: 10px;
-    }
-    .masthead h1 {
-        font-family: 'Playfair Display', serif;
-        font-size: 2.8rem;
-        text-transform: uppercase;
-        letter-spacing: -1px;
-    }
-    .meta-data {
-        display: flex;
-        justify-content: space-between;
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        font-weight: 700;
-        border-top: 1px solid #1a1a1a;
-        padding-top: 4px;
-        margin-top: 4px;
-    }
+        /* MASTHEAD */
+        .masthead {
+            text-align: center;
+            border-bottom: 4px double #1a1a1a;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+        }
+        .masthead h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+        .meta-data {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            border-top: 1px solid #1a1a1a;
+            padding-top: 4px;
+            margin-top: 4px;
+        }
 
-    /* ARTICLE SECTIONS */
-    .section {
-        margin-bottom: 40px;
-        opacity: 0;
-        transform: translateY(20px);
-        transition: all 1s ease-out;
-    }
-    .reveal { opacity: 1 !important; transform: translateY(0) !important; }
+        /* ARTICLE SECTIONS */
+        .section {
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease-out;
+        }
+        .reveal { opacity: 1 !important; transform: translateY(0) !important; }
 
-    .headline {
-        font-family: 'Playfair Display', serif;
-        font-size: 2rem;
-        line-height: 1.1;
-        margin-bottom: 12px;
-        border-bottom: 1px solid #1a1a1a;
-        padding-bottom: 5px;
-    }
-    .sub-headline {
-        font-family: 'EB Garamond', serif;
-        font-style: italic;
-        font-size: 1.1rem;
-        color: #444;
-        margin-bottom: 15px;
-        display: block;
-    }
-    .content {
-        font-size: 1.15rem;
-        text-align: justify;
-        margin-bottom: 15px;
-        hyphens: auto;
-    }
+        .headline {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            line-height: 1.2;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #1a1a1a;
+            padding-bottom: 5px;
+        }
+        .sub-headline {
+            font-family: 'EB Garamond', serif;
+            font-style: italic;
+            font-size: 1.05rem;
+            color: #444;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .content {
+            font-size: 1.1rem;
+            text-align: justify;
+            margin-bottom: 15px;
+            hyphens: auto;
+        }
 
-    /* MEMORY & SMILE SECTION */
-    #memory-section {
-        border: 2px solid #1a1a1a;
-        padding: 15px;
-        background: rgba(255, 228, 230, 0.1);
-        margin-bottom: 25px;
-        text-align: center;
-        position: relative;
-    }
-    #memory-content {
-        font-size: 1.05rem;
-        font-style: italic;
-        margin-bottom: 10px;
-        transition: transform 0.3s ease, opacity 0.3s ease;
-    }
+        /* GRID FOR SIDEBAR & MEMORY */
+        .column-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        .editorial-box {
+            border: 1px solid #1a1a1a;
+            padding: 15px;
+            background: rgba(0,0,0,0.02);
+            font-style: italic;
+        }
+        .ad-spot {
+            border: 2px solid #1a1a1a;
+            text-align: center;
+            padding: 10px;
+            font-family: 'Playfair Display', serif;
+            text-transform: uppercase;
+            font-size: 1rem;
+        }
 
-    /* BUTTONS */
-    .btn-group {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        flex-wrap: wrap;
-    }
-    .memory-btn, .smile-btn {
-        background: #ff8fa3;
-        border: none;
-        padding: 8px 15px;
-        cursor: pointer;
-        font-family: 'Dancing Script', cursive;
-        font-size: 1.1rem;
-        color: #fff;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-    }
-    .memory-btn:hover, .smile-btn:hover { background: #ffb3c1; }
+        /* MEMORY & SMILE SECTIONS */
+        .memory-box {
+            border: 1px solid #1a1a1a;
+            background: rgba(255, 228, 228, 0.2);
+            padding: 15px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
 
-    #smile-display {
-        display: block;
-        font-size: 2rem;
-        margin-top: 10px;
-        position: relative;
-    }
+        /* SIGNATURE */
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #8b2635;
+            display: block;
+            text-align: right;
+            margin-top: 10px;
+        }
 
-    /* SPARKLE ANIMATION */
-    .sparkle {
-        position: absolute;
-        width: 8px;
-        height: 8px;
-        background: gold;
-        border-radius: 50%;
-        opacity: 0;
-        pointer-events: none;
-        animation: sparkleAnim 0.8s forwards;
-    }
-    @keyframes sparkleAnim {
-        0% { transform: scale(0.5); opacity: 0; }
-        50% { transform: scale(1.2); opacity: 1; }
-        100% { transform: scale(0.8) translateY(-20px); opacity: 0; }
-    }
-
-    /* HANDWRITTEN SIGNATURES */
-    .signature {
-        font-family: 'Dancing Script', cursive;
-        font-size: 1.8rem;
-        color: #8b2635;
-        display: block;
-        text-align: right;
-        margin-top: 10px;
-    }
-
-    /* FINAL SCENE */
-    #final-scene {
-        text-align: center;
-        padding: 60px 0;
-        border-top: 3px double #1a1a1a;
-    }
-    .star-box {
-        height: 120px;
-        position: relative;
-        width: 100%;
-        margin: 20px 0;
-    }
-    .star-ink {
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        background: #1a1a1a;
-        border-radius: 50%;
-        top: 50%;
-        opacity: 0;
-        transition: all 5s ease-in-out;
-    }
-    #s-left { left: 0; }
-    #s-right { right: 0; }
-    .align-l { left: 45% !important; opacity: 1 !important; }
-    .align-r { right: 45% !important; opacity: 1 !important; }
-</style>
+        /* FINAL CELESTIAL */
+        #final-scene {
+            text-align: center;
+            padding: 50px 0;
+            border-top: 3px double #1a1a1a;
+        }
+        .star-box {
+            height: 120px;
+            position: relative;
+            width: 100%;
+            margin: 20px 0;
+        }
+        .star-ink {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #1a1a1a;
+            border-radius: 50%;
+            top: 50%;
+            opacity: 0;
+            transition: all 5s ease-in-out;
+        }
+        #s-left { left: 0; }
+        #s-right { right: 0; }
+        .align-l { left: 45% !important; opacity: 1 !important; }
+        .align-r { right: 45% !important; opacity: 1 !important; }
+    </style>
 </head>
 <body>
 
-<div id="news-container">
-    <div class="masthead">
-        <h1>The Cupid Times</h1>
-        <div class="meta-data">
-            <span>The Silent Shore Edition</span>
-            <span>Sat, Feb 14, 2026</span>
-            <span>One Heart Only</span>
-        </div>
-    </div>
-
-    <!-- MAIN ARTICLE -->
-    <div class="section">
-        <h2 class="headline">Atmospheric Shift: Winds Reported Softer Today</h2>
-        <span class="sub-headline">Reports suggest the breeze carries an unspoken message.</span>
-        <p class="content">If the air feels different as you hold this page, it is because every unspoken thought has been recorded here. We’ve navigated through "half there" moments and heavy silences, but today the lead story is simple: I am still here, and I still value you exactly as you are.</p>
-    </div>
-
-    <!-- MEMORY & SMILE SECTION -->
-    <div class="section" id="memory-section">
-        <h2 class="headline">Memories & Smiles 🌸</h2>
-        <p id="memory-content">Earlier this week, a claim was made regarding an ID card. While certainty was high, investigations proved the other party was correct. A formal apology was issued, accompanied by a playfully dramatic head tap. Witnesses describe the atmosphere as "effortlessly calm."</p>
-        
-        <div class="btn-group">
-            <button id="memory-btn" class="memory-btn">Show Another Memory</button>
-            <button id="smile-btn" class="smile-btn">Show a Smile</button>
-        </div>
-        <span id="smile-display">😊</span>
-    </div>
-
-    <!-- EDITORIAL & AD -->
-    <div class="section column-grid">
-        <div class="editorial-box">
-            <p>"Vulnerability is the only way to build a bridge where distance once was. Today, we choose to speak from the heart."</p>
-        </div>
-        <div class="ad-spot">
-            <p style="font-size: 0.7rem;">For Your Peace Of Mind</p>
-            <p>💛 A SMILE 💛</p>
-            <p style="font-size: 0.6rem;">Now In Stock For A Smile</p>
-        </div>
-    </div>
-
-    <!-- EDITORIAL ARTICLE -->
-    <div class="section">
-        <h2 class="headline">Editorial: A Statement of Fact & Honor</h2>
-        <p class="content">In a world full of noise, quiet honesty remains the most important narrative. I am not here to ask you for anything—I am only here to record that you matter. For every sweet day and every bitter one, thank you for being a part of this story.</p>
-        <span class="signature">— With every good intention.</span>
-    </div>
-
-    <!-- FINAL SCENE -->
-    <div class="section" id="final-trigger">
-        <div id="final-scene">
-            <h2 class="headline" style="border:none; text-align:center;">Grateful Our Paths Crossed</h2>
-            <p class="content" style="text-align:center;">Whatever direction life takes us next, I am simply happy that for a moment in time, we shared the same light.</p>
-            <div class="star-box">
-                <div id="s-left" class="star-ink"></div>
-                <div id="s-right" class="star-ink"></div>
+    <div id="news-container">
+        <div class="masthead">
+            <h1>The Cupid Times</h1>
+            <div class="meta-data">
+                <span>The Silent Shore Edition</span>
+                <span>Sat, Feb 14, 2026</span>
+                <span>One Heart Only</span>
             </div>
-            <p class="signature" style="text-align:center; font-size: 2.3rem;">I’ll be here — quietly, always.</p>
         </div>
+
+        <!-- MAIN ARTICLE -->
+        <div class="section">
+            <h2 class="headline">Winds Are Softer Today 🌿</h2>
+            <span class="sub-headline">The breeze feels like it’s carrying something quiet...</span>
+            <p class="content">
+                Hey, if the air feels a little different today, it’s because I’m thinking of you. We’ve had our “half-there” moments, quiet silences, and little misunderstandings… but today’s story is simple: I’m still here, I still care, and I still think you’re amazing, exactly as you are. 💛
+            </p>
+        </div>
+
+        <!-- MEMORY + SMILE SECTION -->
+        <div class="section column-grid">
+            <div class="memory-box">
+                <h3 style="margin-bottom:10px;">Little Memories 🌸</h3>
+                <p>Earlier this week, there was that ID card moment. I was sure I was right… but turns out, you were! 😅 I gave a dramatic “oops” head tap as an apology, and honestly, it felt kind of calm, kind of funny. Moments like that — small, silly, simple — stay with me.</p>
+                <p>Remember the time we laughed until our cheeks hurt? Best workout ever! 😄</p>
+                <p>That quiet evening just listening to music… like the world didn’t exist. 🌙</p>
+                <p>When I tripped and you turned it into a joke — couldn’t stop laughing. 🎈</p>
+            </div>
+            <div class="ad-spot">
+                <p style="font-size: 0.8rem;">Just For Your Smile</p>
+                <p style="font-size:2rem;">😊✨</p>
+                <p style="font-size: 0.7rem;">No pressure. Just happy thoughts.</p>
+            </div>
+        </div>
+
+        <!-- EDITORIAL -->
+        <div class="section">
+            <h2 class="headline">A Little Truth 🌸</h2>
+            <p class="content">
+                Life is noisy. But quiet honesty? That’s what matters. I’m not asking for anything — I just want you to know you’re valued. For the sweet days, the tough days, and the silly ones — thanks for being part of it.
+            </p>
+            <span class="signature">— with all my heart ❤️</span>
+        </div>
+
+        <!-- FINAL SCENE -->
+        <div class="section" id="final-trigger">
+            <div id="final-scene">
+                <h2 class="headline" style="border:none; text-align:center;">So Glad We Crossed Paths 🌟</h2>
+                <p class="content" style="text-align:center;">
+                    No matter where life goes next, I’m just happy we shared this little corner of the world.
+                </p>
+                <div class="star-box">
+                    <div id="s-left" class="star-ink"></div>
+                    <div id="s-right" class="star-ink"></div>
+                </div>
+                <p class="signature" style="text-align:center; font-size:2.3rem;">I’ll be here — quietly, always. 💫</p>
+            </div>
+        </div>
+
+        <p style="text-align:center; font-style:italic; opacity:0.4; font-size: 0.8rem;">End of Special Edition - Feb 14, 2026</p>
     </div>
 
-    <p style="text-align:center; font-style:italic; opacity:0.4; font-size: 0.8rem;">End of Special Edition - Feb 14, 2026</p>
-</div>
-
-<script>
-    // Scroll reveal
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('reveal');
-                if (entry.target.id === 'final-trigger') {
-                    setTimeout(() => {
-                        document.getElementById('s-left').classList.add('align-l');
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal');
+                    if (entry.target.id === 'final-trigger') {
                         setTimeout(() => {
-                            document.getElementById('s-right').classList.add('align-r');
-                        }, 1500);
-                    }, 1000);
+                            document.getElementById('s-left').classList.add('align-l');
+                            setTimeout(() => {
+                                document.getElementById('s-right').classList.add('align-r');
+                            }, 1500);
+                        }, 1000);
+                    }
                 }
-            }
-        });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.section').forEach(sec => observer.observe(sec));
+            });
+        }, { threshold: 0.1 });
 
-    // Memories
-    const memories = [
-        "Earlier this week, a claim was made regarding an ID card. While certainty was high, investigations proved the other party was correct. A formal apology was issued, accompanied by a playfully dramatic head tap. Witnesses describe the atmosphere as 'effortlessly calm.'",
-        "That time we laughed until our cheeks hurt, every little smile felt like a treasure. 🌸",
-        "A quiet evening where we shared a song and pretended no one else existed. 🌟",
-        "A playful moment when I tripped but you made it into a joke, making us both giggle endlessly. 🎈"
-    ];
-    const memoryContent = document.getElementById('memory-content');
-    const memoryBtn = document.getElementById('memory-btn');
-    memoryBtn.addEventListener('click', () => {
-        const randomMemory = memories[Math.floor(Math.random() * memories.length)];
-        memoryContent.textContent = randomMemory;
-        popWithSparkle(memoryContent);
-    });
-
-    // Smile
-    const smiles = ["😊","😄","🌸","💛","✨","🎈","💫"];
-    const smileDisplay = document.getElementById('smile-display');
-    const smileBtn = document.getElementById('smile-btn');
-    smileBtn.addEventListener('click', () => {
-        const randomSmile = smiles[Math.floor(Math.random() * smiles.length)];
-        smileDisplay.textContent = randomSmile;
-        popWithSparkle(smileDisplay);
-    });
-
-    // Sparkle effect function
-    function popWithSparkle(el) {
-        el.style.transform = "scale(1.2)";
-        el.style.opacity = "0.9";
-        setTimeout(() => {
-            el.style.transform = "scale(1)";
-            el.style.opacity = "1";
-        }, 300);
-        // create sparkles
-        for(let i=0;i<5;i++){
-            const sparkle = document.createElement('span');
-            sparkle.className = 'sparkle';
-            sparkle.style.left = (el.offsetLeft + Math.random()*el.offsetWidth) + 'px';
-            sparkle.style.top = (el.offsetTop + Math.random()*el.offsetHeight) + 'px';
-            document.body.appendChild(sparkle);
-            setTimeout(()=> sparkle.remove(), 800);
-        }
-    }
-</script>
-
+        document.querySelectorAll('.section').forEach(sec => observer.observe(sec));
+    </script>
 </body>
 </html>
