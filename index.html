@@ -10,7 +10,7 @@
         /* RESET & BASE */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html { 
-            background: #dcd7c9;
+            background: #dcd7c9; /* Tabletop background */
             font-family: 'EB Garamond', serif;
             color: #1a1a1a;
             line-height: 1.4;
@@ -18,19 +18,19 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* PAPER CONTAINER */
+        /* THE PAPER CONTAINER */
         #news-container {
             width: 95%;
-            max-width: 500px;
+            max-width: 550px;
             margin: 20px auto;
-            background: #f4f1ea;
+            background: #f4f1ea; /* Real newsprint color */
             border: 1px solid #d1ccc0;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2), inset 0 0 100px rgba(0,0,0,0.05);
             padding: 30px 15px;
             position: relative;
         }
 
-        /* MASTHEAD */
+        /* MASTHEAD - THE MAIN BANNER */
         .masthead {
             text-align: center;
             border-bottom: 4px double #1a1a1a;
@@ -89,7 +89,7 @@
         /* SIDEBARS & ADS */
         .column-grid {
             display: grid;
-            grid-template-columns: 1fr; /* mobile-friendly single column */
+            grid-template-columns: 1fr; /* Single column for mobile to prevent overlap */
             gap: 20px;
         }
         .editorial-box {
@@ -110,19 +110,34 @@
             margin: 20px 0;
             font-family: 'Playfair Display', serif;
             text-transform: uppercase;
-            position: relative;
-            cursor: pointer;
         }
-        .smile-button {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 5px 10px;
+
+        /* MEMORY SECTION */
+        #memory-section {
+            border: 2px solid #1a1a1a;
+            padding: 15px;
+            background: rgba(255, 228, 230, 0.1);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        #memory-content {
+            font-size: 1.05rem;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        #memory-btn {
             background: #ff8fa3;
-            color: #fff;
-            font-weight: bold;
-            border-radius: 5px;
+            border: none;
+            padding: 8px 15px;
             cursor: pointer;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.1rem;
+            color: #fff;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        #memory-btn:hover {
+            background: #ffb3c1;
         }
 
         /* HANDWRITTEN SIGNATURES */
@@ -161,24 +176,6 @@
         #s-right { right: 0; }
         .align-l { left: 45% !important; opacity: 1 !important; }
         .align-r { right: 45% !important; opacity: 1 !important; }
-
-        /* MEMORY BUTTON */
-        .memory-box {
-            border: 2px dashed #8b2635;
-            padding: 15px;
-            margin: 20px 0;
-            text-align: center;
-            background: #fff0f2;
-        }
-        .memory-box button {
-            padding: 5px 10px;
-            font-size: 1rem;
-            border-radius: 5px;
-            border: 1px solid #8b2635;
-            cursor: pointer;
-            background: #ffceda;
-            font-family: 'Playfair Display', serif;
-        }
     </style>
 </head>
 <body>
@@ -193,44 +190,46 @@
             </div>
         </div>
 
-        <!-- Atmosphere Section -->
+        <!-- MAIN ARTICLE -->
         <div class="section">
             <h2 class="headline">Atmospheric Shift: Winds Reported Softer Today</h2>
             <span class="sub-headline">Reports suggest the breeze carries an unspoken message.</span>
             <p class="content">If the air feels different as you hold this page, it is because every unspoken thought has been recorded here. We’ve navigated through "half there" moments and heavy silences, but today the lead story is simple: I am still here, and I still value you exactly as you are.</p>
         </div>
 
-        <!-- Memory Button Section -->
-        <div class="section memory-box">
-            <p>Click to recall a sweet memory:</p>
-            <button id="memory-btn">Show Memory</button>
-            <p id="memory-text" style="margin-top:10px; font-style:italic; display:none;">🌸 That time we laughed until our cheeks hurt, every little smile felt like a treasure 🌸</p>
+        <!-- MEMORY & SMILE SECTION -->
+        <div class="section" id="memory-section">
+            <h2 class="headline">Memories & Smiles 🌸</h2>
+            <p id="memory-content">Earlier this week, a claim was made regarding an ID card. While certainty was high, investigations proved the other party was correct. A formal apology was issued, accompanied by a playfully dramatic head tap. Witnesses describe the atmosphere as "effortlessly calm."</p>
+            <button id="memory-btn">Show Another Memory</button>
         </div>
 
-        <!-- Editorial Section -->
+        <!-- EDITORIAL -->
+        <div class="section column-grid">
+            <div class="editorial-box">
+                <p>"Vulnerability is the only way to build a bridge where distance once was. Today, we choose to speak from the heart."</p>
+            </div>
+            <div class="ad-spot">
+                <p style="font-size: 0.7rem;">For Your Peace Of Mind</p>
+                <p>💛 A CRYSTAL SMILE 💛</p>
+                <p style="font-size: 0.6rem;">Now In Stock For A Smile</p>
+            </div>
+        </div>
+
+        <!-- EDITORIAL ARTICLE -->
         <div class="section">
             <h2 class="headline">Editorial: A Statement of Fact & Honor</h2>
             <p class="content">In a world full of noise, quiet honesty remains the most important narrative. I am not here to ask you for anything—I am only here to record that you matter. For every sweet day and every bitter one, thank you for being a part of this story.</p>
             <span class="signature">— With every good intention.</span>
         </div>
 
-        <!-- Smile Button Section -->
-        <div class="section column-grid">
-            <div class="ad-spot">
-                <p style="font-size: 0.7rem;">For Your Peace Of Mind</p>
-                <p>Just a Smile 😊</p>
-                <p style="font-size: 0.6rem;">A tiny reason to feel lighthearted today</p>
-                <span class="smile-button" id="smile-btn">Give a Smile</span>
-            </div>
-        </div>
-
-        <!-- Classifieds Section -->
+        <!-- CLASSIFIEDS -->
         <div class="section classifieds">
             <p><strong>FOUND:</strong> A safe anchor. Steady, patient, and ready to respect your space and comfort at all costs.</p>
             <p style="margin-top: 10px;"><strong>WANTED:</strong> Just a moment for you to breathe and know that you are safe in this sanctuary.</p>
         </div>
 
-        <!-- Final Scene -->
+        <!-- FINAL SCENE -->
         <div class="section" id="final-trigger">
             <div id="final-scene">
                 <h2 class="headline" style="border:none; text-align:center;">Grateful Our Paths Crossed</h2>
@@ -249,7 +248,7 @@
     </div>
 
     <script>
-        // Reveal Sections on Scroll
+        // Scroll reveal for sections
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -265,37 +264,22 @@
                 }
             });
         }, { threshold: 0.1 });
-
         document.querySelectorAll('.section').forEach(sec => observer.observe(sec));
 
-        // Memory Button
+        // Memory Button Logic
+        const memories = [
+            "Earlier this week, a claim was made regarding an ID card. While certainty was high, investigations proved the other party was correct. A formal apology was issued, accompanied by a playfully dramatic head tap. Witnesses describe the atmosphere as 'effortlessly calm.'",
+            "That time we laughed until our cheeks hurt, every little smile felt like a treasure. 🌸",
+            "A quiet evening where we shared a song and pretended no one else existed. 🌟",
+            "A playful moment when I tripped but you made it into a joke, making us both giggle endlessly. 🎈"
+        ];
+
+        const memoryContent = document.getElementById('memory-content');
         const memoryBtn = document.getElementById('memory-btn');
-        const memoryText = document.getElementById('memory-text');
+
         memoryBtn.addEventListener('click', () => {
-            memoryText.style.display = memoryText.style.display === 'none' ? 'block' : 'none';
-        });
-
-        // Smile Button with Floating Hearts
-        const smileBtn = document.getElementById('smile-btn');
-        smileBtn.addEventListener('click', () => {
-            const heart = document.createElement('span');
-            heart.innerText = '❤️';
-            heart.style.position = 'absolute';
-            heart.style.fontSize = `${Math.random() * 20 + 20}px`;
-            const rect = smileBtn.getBoundingClientRect();
-            heart.style.left = `${rect.left + rect.width/2}px`;
-            heart.style.top = `${rect.top}px`;
-            heart.style.opacity = 1;
-            heart.style.pointerEvents = 'none';
-            heart.style.transition = 'all 1.5s ease-out';
-            document.body.appendChild(heart);
-
-            setTimeout(() => {
-                heart.style.top = `${rect.top - 100}px`;
-                heart.style.opacity = 0;
-            }, 50);
-
-            setTimeout(() => heart.remove(), 1600);
+            const randomMemory = memories[Math.floor(Math.random() * memories.length)];
+            memoryContent.textContent = randomMemory;
         });
     </script>
 
