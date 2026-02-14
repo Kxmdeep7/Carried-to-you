@@ -16,59 +16,66 @@
             font-family: 'Dancing Script', cursive; 
             display: flex; justify-content: center; align-items: center;
             transition: background 6s cubic-bezier(0.4, 0, 0.2, 1);
+            text-rendering: optimizeLegibility;
         }
 
-        /* CINEMATIC LAYERS */
         #main-container { width: 100%; height: 100%; position: relative; overflow: hidden; }
         
+        /* CINEMATIC BACKGROUND LAYERS */
         .bg-layer {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             opacity: 0; transition: opacity 5s ease-in-out;
         }
         #sunset-bg { background: linear-gradient(180deg, #3a506b 0%, #ff9a8b 100%); }
-        #night-bg { background: radial-gradient(circle at 75% 85%, rgba(255,255,255,0.1) 0%, #020405 80%); }
+        #night-bg { background: radial-gradient(circle at 75% 85%, rgba(255,255,255,0.12) 0%, #020405 85%); }
 
         /* VIDEO-STYLE TEXT DRIFT */
         .text-scene {
-            position: absolute; width: 85%; left: 7.5%; top: 40%;
-            text-align: center; font-size: 2.1rem; color: #4a4a4a;
-            opacity: 0; transform: translateY(20px);
+            position: absolute; width: 85%; left: 7.5%; top: 38%;
+            text-align: center; font-size: 2.2rem; color: #4a4a4a;
+            opacity: 0; transform: translateY(30px);
             transition: opacity 2s ease, transform 2.5s ease;
             z-index: 100; visibility: hidden;
         }
         .active-scene { opacity: 1 !important; transform: translateY(0px) !important; visibility: visible !important; }
 
-        /* HEART WORDS SYNC */
+        /* HEART WORDS SYNC (P5) */
         .heart-vessel {
-            width: 260px; height: 260px; margin: 0 auto;
+            width: 280px; height: 280px; margin: 0 auto;
             border: 2px solid rgba(255, 143, 163, 0.4);
-            border-radius: 50%; display: flex; align-items: center;
-            justify-content: center; padding: 25px;
-            animation: heartbeat 3s ease-in-out infinite;
+            border-radius: 50%; display: flex; flex-direction: column; 
+            align-items: center; justify-content: center; padding: 30px;
+            animation: heartBeat 3.5s ease-in-out infinite;
+            background: rgba(255, 143, 163, 0.03);
         }
-        @keyframes heartbeat { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 1; } }
+        @keyframes heartBeat { 
+            0%, 100% { transform: scale(1); box-shadow: 0 0 10px rgba(255,143,163,0.1); } 
+            50% { transform: scale(1.04); box-shadow: 0 0 25px rgba(255,143,163,0.2); } 
+        }
 
-        /* DYNAMIC PARTICLES */
+        /* DYNAMIC PARTICLES (PETALS & SPARKLES) */
         .particle {
             position: absolute; pointer-events: none; opacity: 0;
-            animation: cinematicFloat 8s linear infinite;
+            animation: cinematicFloat 9s linear infinite;
         }
         @keyframes cinematicFloat {
             0% { transform: translate(0, -10vh) rotate(0deg); opacity: 0; }
-            20% { opacity: 0.6; }
-            80% { opacity: 0.6; }
-            100% { transform: translate(20vw, 110vh) rotate(360deg); opacity: 0; }
+            20% { opacity: 0.7; }
+            80% { opacity: 0.7; }
+            100% { transform: translate(15vw, 110vh) rotate(450deg); opacity: 0; }
         }
 
-        /* FINAL SCENE GLOW */
+        /* FINAL SCENE ELEMENTS */
         #nature-frame { position: absolute; width: 100%; height: 100%; z-index: 50; pointer-events: none; }
-        .branch-art { position: absolute; bottom: 10%; right: -10px; width: 350px; opacity: 0; transition: opacity 4s ease; filter: drop-shadow(0 0 10px rgba(255,255,255,0.1)); }
-        .bird-actor { position: absolute; width: 50px; fill: #fff; opacity: 0; transition: all 6s cubic-bezier(0.1, 0.8, 0.2, 1); filter: drop-shadow(0 0 15px white); }
-        .land-1 { top: calc(88% - 138px) !important; left: calc(100% - 205px) !important; opacity: 1 !important; }
-        .land-2 { top: calc(88% - 142px) !important; left: calc(100% - 155px) !important; opacity: 1 !important; transform: scaleX(-1); }
+        .branch-art { position: absolute; bottom: 12%; right: -10px; width: 360px; opacity: 0; transition: opacity 4s ease; }
+        .bird-actor { position: absolute; width: 52px; fill: #fff; opacity: 0; transition: all 6s cubic-bezier(0.1, 0.8, 0.2, 1); filter: drop-shadow(0 0 12px white); }
+        
+        /* S24 ULTRA OPTIMIZED LANDING */
+        .land-1 { top: calc(88% - 142px) !important; left: calc(100% - 210px) !important; opacity: 1 !important; }
+        .land-2 { top: calc(88% - 146px) !important; left: calc(100% - 160px) !important; opacity: 1 !important; transform: scaleX(-1); }
 
         .pulse-end { animation: pulseText 4s ease-in-out infinite; }
-        @keyframes pulseText { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.7; transform: scale(1.02); } }
+        @keyframes pulseText { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.03); } }
     </style>
 </head>
 <body>
@@ -77,70 +84,108 @@
         <div id="sunset-bg" class="bg-layer"></div>
         <div id="night-bg" class="bg-layer"></div>
 
-        <div class="text-scene" id="s1">A Quiet Valentine 🌿<br><span style="font-size:1.2rem">Moments I appreciated with you.</span></div>
-        <div class="text-scene" id="s2">Even small things can feel beautiful 🌸<br><span style="font-size:1.2rem">— like your smile today.</span></div>
-        <div class="text-scene" id="s3">I value what we have 💛</div>
-        <div class="text-scene" id="s4">The sweet and the bitter moments 🍫<br><span style="font-size:1.1rem">both mattered.</span></div>
-        <div class="text-scene" id="s5">
-            <div class="heart-vessel">A small gift. No pressure. Just a smile 🌿</div>
+        <div class="text-scene" id="s1">
+            A Quiet Valentine 🌿<br>
+            <span style="font-size:1.3rem; opacity: 0.8;">Not loud. Just moments I appreciated with you.</span>
         </div>
-        <div class="text-scene" id="s6">I promise to respect your space 🤍</div>
-        <div class="text-scene" id="s7" style="color:#fff">Even in silence, comfort exists 🌙</div>
+
+        <div class="text-scene" id="s2">
+            Even small things can feel beautiful 🌸<br>
+            <span style="font-size:1.3rem; opacity: 0.7;">— like your smile today.</span>
+        </div>
+
+        <div class="text-scene" id="s3">
+            Not a proposal. Just honesty —<br>I value what we have 💛
+        </div>
+
+        <div class="text-scene" id="s4">
+            Thank you for the sweet and bitter moments 🍫<br>
+            <span style="font-size:1.2rem; opacity: 0.8;">both mattered.</span>
+        </div>
+
+        <div class="text-scene" id="s5">
+            <div class="heart-vessel">
+                <p>A small gift. No pressure. Just a smile 🌿</p>
+                <span style="font-size: 1rem; opacity: 0.5; margin-top: 10px;">Your turn ❤️</span>
+            </div>
+        </div>
+
+        <div class="text-scene" id="s6">
+            I promise to respect your space<br>and comfort 🤍
+        </div>
+
+        <div class="text-scene" id="s7" style="color:#fff">
+            Even in silence, comfort exists 🌙
+        </div>
+
         <div class="text-scene pulse-end" id="s8" style="color:#fff">
             Whatever direction life takes us 🌸✨<br>
             I’m grateful we crossed paths.<br>
-            <span style="font-size:1.2rem; opacity:0.8;">I’ll be here — quietly, always.</span>
+            <span style="font-size:1.3rem; opacity:0.8;">I’ll be here — quietly, always.</span>
         </div>
 
         <div id="nature-frame">
-            <svg class="branch-art" id="branch" viewBox="0 0 200 120"><path d="M200,105 C170,95 140,115 100,100 C60,85 30,90 0,75" stroke="#1a1108" stroke-width="8" fill="none" stroke-linecap="round"/></svg>
+            <svg class="branch-art" id="branch" viewBox="0 0 200 120">
+                <path d="M200,105 C170,95 140,115 100,100 C60,85 30,90 0,75" stroke="#1a1108" stroke-width="8" fill="none" stroke-linecap="round"/>
+                <path d="M140,105 C135,75 125,65 110,60" stroke="#1a1108" stroke-width="5" fill="none" stroke-linecap="round"/>
+            </svg>
             <svg id="b1" class="bird-actor" viewBox="0 0 24 24"><path d="M21,12C21,12 18,5 11,5C10,5 5,7 3,11C2,13 3,15 5,16C4,17 3,18 2,19C5,19 7,17 8,16C11,17 21,12 21,12Z" /></svg>
             <svg id="b2" class="bird-actor" viewBox="0 0 24 24"><path d="M21,12C21,12 18,5 11,5C10,5 5,7 3,11C2,13 3,15 5,16C4,17 3,18 2,19C5,19 7,17 8,16C11,17 21,12 21,12Z" /></svg>
         </div>
     </div>
 
     <script>
+        let stopPetals = false;
+
         function createParticle(symbol, color) {
+            if (stopPetals && symbol === '🌸') return;
+
             const p = document.createElement('div');
             p.className = 'particle';
             p.innerHTML = symbol;
             p.style.left = Math.random() * 100 + "vw";
             p.style.color = color;
             p.style.fontSize = (Math.random() * 10 + 10) + "px";
-            p.style.animationDuration = (Math.random() * 3 + 5) + "s";
+            p.style.animationDuration = (Math.random() * 4 + 6) + "s";
             document.getElementById('main-container').appendChild(p);
-            setTimeout(() => p.remove(), 8000);
+            setTimeout(() => p.remove(), 9000);
         }
 
         window.onload = () => {
             const scenes = [1,2,3,4,5,6,7,8].map(n => document.getElementById(`s${n}`));
             let step = 0;
 
-            const playVideo = () => {
+            const playExperience = () => {
                 if (step > 0) scenes[step-1].classList.remove('active-scene');
                 if (step < scenes.length) {
                     scenes[step].classList.add('active-scene');
 
-                    // SCENE TRIGGERS
-                    if (step === 1) setInterval(() => createParticle('🌸', '#ff8fa3'), 300);
-                    if (step === 2) document.getElementById('sunset-bg').style.opacity = "1";
-                    if (step === 5) {
+                    // SCENE-SPECIFIC TRIGGERS
+                    if (step === 1) setInterval(() => createParticle('🌸', '#ff8fa3'), 350);
+                    if (step === 3) document.getElementById('sunset-bg').style.opacity = "1";
+                    
+                    if (step === 6) {
+                        stopPetals = true; // Transition from Petals to Night
                         document.getElementById('night-bg').style.opacity = "1";
-                        setInterval(() => createParticle('✨', '#fff'), 400);
+                        // Start slow Moonlight Sparkles
+                        setInterval(() => createParticle('✨', 'rgba(255,255,255,0.5)'), 600);
                     }
+
                     if (step === 7) {
                         setTimeout(() => {
                             document.getElementById('branch').style.opacity = "1";
                             document.getElementById('b1').classList.add('land-1');
                             setTimeout(() => document.getElementById('b2').classList.add('land-2'), 1500);
-                        }, 2000);
+                        }, 2500);
                     }
 
+                    // Pacing: Rose Day (Step 1) gets extra time for effect
+                    let timing = (step === 1) ? 7500 : 5500;
                     step++;
-                    setTimeout(playVideo, step === 2 ? 7000 : 5500);
+                    setTimeout(playExperience, timing);
                 }
             };
-            playVideo();
+            playExperience();
         };
     </script>
 </body>
