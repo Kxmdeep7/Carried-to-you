@@ -10,7 +10,7 @@
         /* RESET & BASE */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html { 
-            background: #dcd7c9; /* Tabletop background */
+            background: #dcd7c9;
             font-family: 'EB Garamond', serif;
             color: #1a1a1a;
             line-height: 1.4;
@@ -23,14 +23,14 @@
             width: 95%;
             max-width: 550px;
             margin: 20px auto;
-            background: #f4f1ea; /* Real newsprint color */
+            background: #f4f1ea;
             border: 1px solid #d1ccc0;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2), inset 0 0 100px rgba(0,0,0,0.05);
             padding: 30px 15px;
             position: relative;
         }
 
-        /* MASTHEAD - THE MAIN BANNER */
+        /* MASTHEAD */
         .masthead {
             text-align: center;
             border-bottom: 4px double #1a1a1a;
@@ -89,7 +89,7 @@
         /* SIDEBARS & ADS */
         .column-grid {
             display: grid;
-            grid-template-columns: 1fr; /* Single column for mobile to prevent overlap */
+            grid-template-columns: 1fr;
             gap: 20px;
         }
         .editorial-box {
@@ -124,6 +124,15 @@
             font-size: 1.05rem;
             font-style: italic;
             margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+        .pop { 
+            animation: popAnimation 0.4s forwards; 
+        }
+        @keyframes popAnimation {
+            0% { transform: scale(0.9); opacity: 0; }
+            50% { transform: scale(1.15); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
         }
         #memory-btn {
             background: #ff8fa3;
@@ -136,9 +145,7 @@
             border-radius: 8px;
             transition: all 0.3s ease;
         }
-        #memory-btn:hover {
-            background: #ffb3c1;
-        }
+        #memory-btn:hover { background: #ffb3c1; }
 
         /* HANDWRITTEN SIGNATURES */
         .signature {
@@ -150,7 +157,7 @@
             margin-top: 10px;
         }
 
-        /* FINAL CELESTIAL ALIGNMENT */
+        /* FINAL SCENE */
         #final-scene {
             text-align: center;
             padding: 60px 0;
@@ -204,14 +211,14 @@
             <button id="memory-btn">Show Another Memory</button>
         </div>
 
-        <!-- EDITORIAL -->
+        <!-- EDITORIAL & AD -->
         <div class="section column-grid">
             <div class="editorial-box">
                 <p>"Vulnerability is the only way to build a bridge where distance once was. Today, we choose to speak from the heart."</p>
             </div>
             <div class="ad-spot">
                 <p style="font-size: 0.7rem;">For Your Peace Of Mind</p>
-                <p>💛 A CRYSTAL SMILE 💛</p>
+                <p>💛 A SMILE 💛</p>
                 <p style="font-size: 0.6rem;">Now In Stock For A Smile</p>
             </div>
         </div>
@@ -266,7 +273,7 @@
         }, { threshold: 0.1 });
         document.querySelectorAll('.section').forEach(sec => observer.observe(sec));
 
-        // Memory Button Logic
+        // Memory Button Logic with Pop Animation
         const memories = [
             "Earlier this week, a claim was made regarding an ID card. While certainty was high, investigations proved the other party was correct. A formal apology was issued, accompanied by a playfully dramatic head tap. Witnesses describe the atmosphere as 'effortlessly calm.'",
             "That time we laughed until our cheeks hurt, every little smile felt like a treasure. 🌸",
@@ -280,6 +287,9 @@
         memoryBtn.addEventListener('click', () => {
             const randomMemory = memories[Math.floor(Math.random() * memories.length)];
             memoryContent.textContent = randomMemory;
+            memoryContent.classList.remove('pop');
+            void memoryContent.offsetWidth; // trigger reflow
+            memoryContent.classList.add('pop');
         });
     </script>
 
