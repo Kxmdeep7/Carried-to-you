@@ -1,107 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>The Cupid Times - Special Edition</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Cupid Times - Feb 14, 2026</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Dancing+Script:wght@600&family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap');
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Dancing+Script:wght@600&family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            background-color: #dcd7c9; 
+            font-family: 'EB Garamond', serif;
+            display: flex; justify-content: center; padding: 20px 0;
+        }
 
-/* Fix the "Locked" feeling with fluid reset */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+        /* NEWSPRINT TEXTURE & COLOR */
+        #newspaper-page {
+            width: 95%; max-width: 800px;
+            background-color: #f4f1ea; /* Authenticated newsprint color */
+            border: 1px solid #d1ccc0;
+            box-shadow: 10px 10px 40px rgba(0,0,0,0.2), inset 0 0 100px rgba(0,0,0,0.05);
+            padding: 40px 30px;
+            position: relative;
+            color: #1a1a1a;
+        }
 
-body { 
-    background-color: #dcd7c9; 
-    font-family: 'EB Garamond', serif;
-    display: block; /* Change from flex to block for better scrolling */
-    padding: 10px;
-    color: #1a1a1a;
-}
+        /* HEADER & MASTHEAD */
+        .masthead { text-align: center; border-bottom: 4px double #1a1a1a; margin-bottom: 20px; }
+        .masthead h1 { font-family: 'Playfair Display', serif; font-size: 4rem; text-transform: uppercase; letter-spacing: -2px; line-height: 1; }
+        .meta-info { display: flex; justify-content: space-between; border-top: 1px solid #1a1a1a; padding: 5px 0; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; margin-top: 5px; }
 
-#newspaper-page {
-    width: 100%;
-    max-width: 600px; /* Better fit for S24 Ultra */
-    margin: 0 auto;
-    background-color: #f4f1ea;
-    border: 1px solid #d1ccc0;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.15);
-    padding: 20px 15px; /* Reduced padding for mobile space */
-}
+        /* MULTI-COLUMN LAYOUT */
+        .main-content { display: grid; grid-template-columns: 2fr 1.2fr; gap: 30px; }
+        
+        /* HEADLINES */
+        .headline { font-family: 'Playfair Display', serif; font-size: 2.2rem; line-height: 1.1; margin-bottom: 15px; border-bottom: 1px solid #1a1a1a; padding-bottom: 10px; }
+        .subhead { font-size: 1.1rem; font-style: italic; margin-bottom: 15px; display: block; color: #333; }
+        
+        /* TEXT COLUMNS */
+        .article-body { column-count: 2; column-gap: 20px; font-size: 1.1rem; text-align: justify; line-height: 1.4; }
+        .article-body p { margin-bottom: 10px; }
 
-/* Masthead remains centered but scales */
-.masthead { text-align: center; border-bottom: 4px double #1a1a1a; margin-bottom: 20px; padding-bottom: 10px; }
-.masthead h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; text-transform: uppercase; line-height: 1; }
-.meta-info { display: flex; justify-content: space-between; border-top: 1px solid #1a1a1a; padding: 5px 0; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; margin-top: 5px; }
+        /* THE KRIS BEAR AD SECTION */
+        .ad-container { border: 2px solid #1a1a1a; padding: 15px; margin-top: 20px; text-align: center; background: rgba(0,0,0,0.02); }
+        .ad-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 10px; border-bottom: 1px solid #1a1a1a; }
+        .ad-image { width: 100%; height: auto; border: 1px solid #1a1a1a; filter: sepia(0.2) contrast(1.1); margin-bottom: 10px; }
+        .ad-footer { font-weight: 700; font-size: 1.1rem; }
 
-/* UNLOCKED LAYOUT: Stack columns on mobile */
-.main-content { display: flex; flex-direction: column; gap: 25px; }
+        /* SIDEBAR / EDITORIAL */
+        .sidebar { border-left: 1px solid #d1ccc0; padding-left: 20px; }
+        .editorial-box { border: 1px solid #1a1a1a; padding: 15px; font-style: italic; margin-bottom: 25px; }
+        .signature { font-family: 'Dancing Script', cursive; font-size: 2.2rem; color: #8b2635; text-align: right; margin-top: 20px; display: block; }
 
-.headline { font-family: 'Playfair Display', serif; font-size: 1.8rem; line-height: 1.1; margin-bottom: 10px; border-bottom: 1px solid #1a1a1a; padding-bottom: 5px; }
-.subhead { font-size: 1rem; font-style: italic; margin-bottom: 10px; display: block; color: #333; }
-
-/* Article body - Single column for mobile to prevent overlap */
-.article-body { font-size: 1.1rem; text-align: justify; line-height: 1.5; }
-.article-body p { margin-bottom: 15px; }
-
-.sidebar { border-top: 1px solid #d1ccc0; padding-top: 20px; }
-
-.editorial-box { border: 1px solid #1a1a1a; padding: 15px; font-style: italic; margin-bottom: 20px; background: rgba(0,0,0,0.02); }
-
-.memory-box { border: 1px dashed #1a1a1a; padding: 15px; margin-bottom: 20px; font-size: 1rem; background: rgba(0,0,0,0.02); }
-
-.ad-container { border: 2px solid #1a1a1a; padding: 15px; margin-top: 10px; text-align: center; }
-.ad-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 10px; border-bottom: 1px solid #1a1a1a; }
-.ad-image { width: 100%; height: auto; border: 1px solid #1a1a1a; filter: sepia(0.2); margin-bottom: 10px; }
-
-.signature { font-family: 'Dancing Script', cursive; font-size: 2rem; color: #8b2635; text-align: right; margin-top: 15px; display: block; }
-
-.star-box { border-top: 2px solid #1a1a1a; margin-top: 30px; padding: 20px 0; text-align: center; }
-</style>
+        /* THE STARS ANIMATION (CELESTIAL) */
+        .star-box { height: 100px; position: relative; width: 100%; border-top: 2px solid #1a1a1a; margin-top: 40px; padding-top: 10px; }
+        .star-point { position: absolute; width: 10px; height: 10px; background: #1a1a1a; border-radius: 50%; top: 50%; opacity: 0.8; }
+        #s-left { left: 0; } #s-right { right: 0; }
+    </style>
 </head>
-
 <body>
-<div id="newspaper-page">
-    <div class="masthead">
-        <h1>The Cupid Times</h1>
-        <div class="meta-info">
-            <span>Special Edition</span>
-            <span>Sat, Feb 14, 2026</span>
-            <span>One Heart Only</span>
-        </div>
-    </div>
 
-    <div class="main-content">
-        <div class="left-col">
-            <h2 class="headline">Breaking: Minor Dispute, Major Memory</h2>
-            <span class="subhead">A confident claim about an ID card turned into a playful headline.</span>
-            <div class="article-body">
-                <p>Earlier this week, a claim was made regarding an ID card. Investigations confirmed the other party was correct. A formal apology followed, accompanied by a "dramatic" head tap.</p>
-                <p>Officials classify the event as a rare moment of genuine connection. Some memories don’t need to be loud; they just quietly choose to stay.</p>
+    <div id="newspaper-page">
+        <div class="masthead">
+            <h1>The Cupid Times</h1>
+            <div class="meta-info">
+                <span>The Silent Shore Edition</span>
+                <span>Sat, Feb 14, 2026</span>
+                <span>One Heart Only</span>
             </div>
         </div>
 
-        <div class="sidebar">
-            <div class="memory-box">
-                <strong>Archive Note:</strong><br><br>
-                • ID card dispute — resolved.<br>
-                • Apology — accepted.<br>
-                • Head tap — documented.<br>
-                • Smile — unforgettable.
+        <div class="main-content">
+            <div class="left-col">
+                <h2 class="headline">Atmospheric Shift: Winds Reported Softer Today</h2>
+                <span class="subhead">Local reports suggest the air carries a message of appreciation.</span>
+                
+                <div class="article-body">
+                    <p>Local sources indicate that the breeze feels different this morning. Experts believe the air is carrying a message for someone truly valued. It’s a quiet shift, but an unmistakable one.</p>
+                    <p>I know things have felt "half there" lately. But today, the lead story isn't the distance—it's the fact that I am still here, and I still value you exactly as you are.</p>
+                </div>
+
+                <h2 class="headline" style="margin-top:30px;">Editorial: A Statement of Fact & Honor</h2>
+                <div class="article-body">
+                    <p>In a world of noise, quiet honesty remains the most important narrative. I am not here to ask for anything; I am only here to record that you matter. For every sweet day and every bitter one, thank you for being a part of this story.</p>
+                </div>
             </div>
 
-            <div class="ad-container">
-                <h3 class="ad-title">Kris Bear for A Smile</h3>
-                <img src="https://i.ibb.co/Cpf03X4/krisbear.jpg" alt="Kris Bear with Daisy" class="ad-image">
-                <p>Limited Edition: For Peace & Respect.</p>
+            <div class="sidebar">
+                <div class="editorial-box">
+                    <p>"You only have to find one way to reach a heart. It is the only way that matters today."</p>
+                </div>
+
+                <div class="ad-container">
+                    <h3 class="ad-title">Kriss Bear for A Smile</h3>
+                    <img src="https://i.ibb.co/Cpf03X4/krisbear.jpg" alt="Kris Bear with Daisy" class="ad-image">
+                    <p class="ad-footer">KrisBear with For A Smile</p>
+                    <p style="font-size:0.8rem;">Now Available in the Sanctuary</p>
+                </div>
+
+                <span class="signature">Feb 26</span>
             </div>
-            <span class="signature">Feb 26</span>
+        </div>
+
+        <div class="star-box">
+            <p style="text-align:center; font-style:italic; margin-bottom: 20px;">Whatever direction life takes us, I'm grateful we crossed paths.</p>
+            <div id="s-left" class="star-point"></div>
+            <div id="s-right" class="star-point"></div>
+            <p class="signature" style="text-align:center; margin-top: 40px;">I’ll be here — quietly, always.</p>
         </div>
     </div>
 
-    <div class="star-box">
-        <p style="font-style:italic;">I’ll be here — respectfully.</p>
-    </div>
-</div>
 </body>
 </html>
