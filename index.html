@@ -1,177 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>A Quiet Valentine</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600&display=swap');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>The Cupid Times - For Deep</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Dancing+Script:wght@500&family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap');
 
-        * { margin: 0; padding: 0; box-sizing: border-box; touch-action: none; }
-        
-        body, html { 
-            height: 100%; width: 100%;
-            background: #fdfaf5; 
-            overflow: hidden; 
-            font-family: 'Dancing Script', cursive; 
-            display: flex; justify-content: center; align-items: center;
-            transition: background 8s ease-in-out;
-            text-rendering: optimizeLegibility;
-        }
+* { margin: 0; padding: 0; box-sizing: border-box; touch-action: none; }
+body, html { 
+    height: 100%; width: 100%;
+    background: #f4f1ea; overflow: hidden; 
+    display: flex; justify-content: center; align-items: center;
+    font-family: 'EB Garamond', serif;
+}
 
-        #main-container { width: 100%; height: 100%; position: relative; overflow: hidden; }
-        
-        .bg-layer {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            opacity: 0; transition: opacity 6s ease-in-out;
-        }
-        #sunset-bg { background: linear-gradient(180deg, #2c3e50 0%, #fc6767 100%); }
-        #night-bg { background: radial-gradient(circle at 50% 50%, #0a0e14, #1a2a6c, #020405); background-size: 400% 400%; }
+#paper-container {
+    width: 90%; height: 95%; border: 1px solid #d1ccc0;
+    background: #f4f1ea; padding: 20px; position: relative;
+    box-shadow: inset 0 0 100px rgba(0,0,0,0.05);
+    display: flex; flex-direction: column;
+}
 
-        .text-scene {
-            position: absolute; width: 85%; left: 7.5%; top: 32%;
-            text-align: center; font-size: 2.2rem; color: #333;
-            opacity: 0; transform: scale(0.95) translateY(20px);
-            transition: opacity 3s ease, transform 4s ease, filter 3s ease;
-            z-index: 100; visibility: hidden; filter: blur(8px);
-        }
-        .active-scene { opacity: 1 !important; transform: scale(1) translateY(0px) !important; visibility: visible !important; filter: blur(0px) !important; }
+/* HEADER */
+.masthead { text-align: center; border-bottom: 4px double #1a1a1a; padding-bottom: 10px; margin-bottom: 10px; }
+.masthead h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 900; letter-spacing: -1px; }
+.meta-data { display: flex; justify-content: space-between; font-family: 'EB Garamond', serif; font-size: 0.8rem; border-top: 1px solid #1a1a1a; padding: 2px 0; text-transform: uppercase; font-weight: 700; }
 
-        .heart-vessel {
-            width: 280px; height: 280px; margin: 0 auto;
-            border: 1px solid rgba(255, 143, 163, 0.3);
-            border-radius: 50%; display: flex; flex-direction: column; 
-            align-items: center; justify-content: center; padding: 30px;
-            animation: pulseGlow 5s ease-in-out infinite;
-        }
-        @keyframes pulseGlow { 0%, 100% { box-shadow: 0 0 20px rgba(255,143,163,0.1); transform: scale(1); } 50% { box-shadow: 0 0 50px rgba(255,143,163,0.25); transform: scale(1.03); } }
+/* NEWS SCENES */
+.news-scene {
+    position: absolute; top: 120px; left: 20px; right: 20px; bottom: 20px;
+    opacity: 0; transform: scale(0.98);
+    transition: opacity 1.5s ease, transform 2s ease;
+    visibility: hidden; display: flex; flex-direction: column;
+}
+.active-news { opacity: 1 !important; transform: scale(1) !important; visibility: visible !important; }
 
-        .memory-list { list-style: none; margin-top: 15px; font-size: 1.3rem; opacity: 0.9; }
-        .memory-list li { margin-bottom: 10px; }
+.headline { font-family: 'Playfair Display', serif; font-size: 2.2rem; line-height: 1.1; margin-bottom: 15px; color: #1a1a1a; border-bottom: 1px solid #1a1a1a; padding-bottom: 5px; }
+.article { font-family: 'EB Garamond', serif; font-size: 1.25rem; line-height: 1.4; color: #333; column-count: 1; text-align: justify; }
+.personal-note { font-family: 'Dancing Script', cursive; font-size: 1.6rem; color: #a33b3b; margin-top: 15px; display: block; }
 
-        .particle { position: absolute; pointer-events: none; opacity: 0; animation: slowDrift 12s linear infinite; }
-        @keyframes slowDrift {
-            0% { transform: translate(0, -5vh) rotate(0deg); opacity: 0; }
-            30% { opacity: 0.6; }
-            100% { transform: translate(15vw, 105vh) rotate(180deg); opacity: 0; }
-        }
+/* IMAGE STYLING */
+.news-photo { width: 100%; height: 200px; background: #e0ddd5; margin: 15px 0; border: 1px solid #1a1a1a; display: flex; justify-content: center; align-items: center; filter: grayscale(100%) contrast(110%); }
 
-        /* SMILE BUTTON */
-        #smile-btn {
-            margin-top: 30px; padding: 10px 20px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.4);
-            color: #fff; font-family: 'Dancing Script', cursive;
-            font-size: 1.2rem; border-radius: 20px;
-            cursor: pointer; pointer-events: auto;
-            transition: all 0.5s ease;
-            opacity: 0;
-        }
-        #smile-btn.show { opacity: 1; }
-        #smile-btn:active { transform: scale(0.9); background: rgba(255,255,255,0.2); }
+/* Heart / Smile Section */
+.heart-vessel { width: 280px; height: 280px; margin: 0 auto; border: 2.5px solid rgba(255, 143, 163, 0.4); border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px; animation: heartBeat 3.5s ease-in-out infinite; background: rgba(255, 143, 163, 0.04); }
+@keyframes heartBeat { 0%,100%{ transform: scale(1); box-shadow:0 0 15px rgba(255,143,163,0.1);} 50%{ transform: scale(1.05); box-shadow:0 0 30px rgba(255,143,163,0.3);} }
 
-        .star {
-            position: absolute; width: 8px; height: 8px;
-            background: #fff; border-radius: 50%; opacity: 0;
-            box-shadow: 0 0 35px 12px rgba(255, 255, 255, 0.9);
-            transition: all 8s cubic-bezier(0.1, 0.5, 0.1, 1);
-            z-index: 60; top: 30%;
-        }
-        #star1 { left: -20%; } #star2 { left: 120%; }
-        .star-meet-1 { left: 43% !important; opacity: 1 !important; }
-        .star-meet-2 { left: 52% !important; opacity: 1 !important; }
-
-        .final-message { font-size: 1.4rem; margin-top: 20px; font-weight: 400; opacity: 0.8; }
-    </style>
+/* PARTICLES */
+.particle { position: absolute; pointer-events: none; opacity: 0; animation: cinematicFloat 10s linear infinite; }
+@keyframes cinematicFloat { 0%{ transform:translate(0,-10vh) rotate(0deg); opacity:0;} 20%{opacity:0.7;} 80%{opacity:0.7;} 100%{transform:translate(15vw,110vh) rotate(450deg); opacity:0;} }
+</style>
 </head>
 <body>
 
-    <div id="main-container">
-        <div id="sunset-bg" class="bg-layer"></div>
-        <div id="night-bg" class="bg-layer"></div>
-
-        <div class="text-scene" id="s1">If the wind feels softer today…<br><span style="font-size:1.4rem">it’s because I’m thinking of you.</span></div>
-        
-        <div class="text-scene" id="s2">
-            📍 Moments I remember most:
-            <ul class="memory-list">
-                <li>• Your smile that day...</li>
-                <li>• The way you teased me...</li>
-                <li>• The way you laughed...</li>
-            </ul>
+<div id="paper-container">
+    <div class="masthead">
+        <h1>The Cupid Times</h1>
+        <div class="meta-data">
+            <span>Kingsville Edition</span>
+            <span>Saturday, Feb 14, 2026</span>
+            <span>Price: Priceless</span>
         </div>
-
-        <div class="text-scene" id="s3">I’m not here to ask for anything.<br><span style="font-size:1.4rem">I’m just here to value you. 💛</span></div>
-        
-        <div class="text-scene" id="s4">
-            <div class="heart-vessel">
-                <p>A small gift for your smile 🌿</p>
-                <span style="font-size: 1.1rem; opacity: 0.5; margin-top: 15px;">A safe space for you ❤️</span>
-            </div>
-        </div>
-
-        <div class="text-scene" id="s5">I promise to always respect<br>your space and your peace 🤍</div>
-        
-        <div class="text-scene" id="s6" style="color:#fff">In the quietest moments…</div>
-        
-        <div class="text-scene" id="s7" style="color:#fff">
-            I’m simply grateful we met. 🌸✨<br>
-            <div class="final-message">I’ll be here — quietly, always.</div>
-            <button id="smile-btn" onclick="this.innerHTML='Thank you for smiling ✨'">Click here if this made you smile 🌟</button>
-        </div>
-
-        <div id="star1" class="star"></div>
-        <div id="star2" class="star"></div>
     </div>
 
-    <script>
-        let stopPetals = false;
+    <!-- Blah Blah Memories -->
+    <div class="news-scene" id="n1">
+        <h2 class="headline">Blah Blah Memories 🌸</h2>
+        <p class="article">
+            Remember when you teased me about the ID card? 😅<br>
+            Or how you mock me and tap my head when I try to be serious?<br>
+            Little things that always make me smile inside 🥰
+        </p>
+        <span class="personal-note">Just… our silly, cute memories 💛</span>
+    </div>
 
-        function createAura(symbol, color) {
-            if (stopPetals && symbol === '🌸') return;
-            const p = document.createElement('div');
-            p.className = 'particle';
-            p.innerHTML = symbol;
-            p.style.left = Math.random() * 100 + "vw";
-            p.style.color = color;
-            p.style.fontSize = (Math.random() * 14 + 10) + "px";
-            document.getElementById('main-container').appendChild(p);
-            setTimeout(() => p.remove(), 12000);
+    <!-- Small Things / Smile Section -->
+    <div class="news-scene" id="n2">
+        <h2 class="headline">The Smile Chronicles 🌿</h2>
+        <p class="article">
+            That time you smiled when I gave you a small gift… I couldn’t stop smiling too.<br>
+            Every smile we share is a story, and it stays with me forever.
+        </p>
+        <div class="heart-vessel">
+            <p>A little gift. Just a reason to see you smile 🌸</p>
+        </div>
+    </div>
+
+    <!-- Honesty Section -->
+    <div class="news-scene" id="n3">
+        <h2 class="headline">Statement of Honesty 💛</h2>
+        <p class="article">
+            I don’t ask for anything. I only want to show my respect and care for you.<br>
+            Our connection matters more than anything else.
+        </p>
+    </div>
+
+    <!-- Sweet & Bitter -->
+    <div class="news-scene" id="n4">
+        <h2 class="headline">The Sweet & The Bitter 🍫</h2>
+        <p class="article">
+            Every day we’ve shared, the ups and downs, all of it mattered.<br>
+            Thank you for being a part of my life, quietly, always.
+        </p>
+    </div>
+
+    <!-- Space & Comfort -->
+    <div class="news-scene" id="n5">
+        <h2 class="headline">Space & Comfort Guaranteed 🤍</h2>
+        <p class="article">
+            I promise to respect your peace and comfort. Your happiness is my priority.<br>
+            Always.
+        </p>
+    </div>
+
+    <!-- Grateful Section -->
+    <div class="news-scene" id="n6">
+        <h2 class="headline" style="text-align:center; border:none;">Grateful We Crossed Paths 🌸✨</h2>
+        <p class="article" style="text-align:center;">
+            Whatever direction life takes us, I’m happy we met.<br>
+            And I’ll be here — quietly, always.
+        </p>
+    </div>
+</div>
+
+<script>
+let stopPetals = false;
+
+function createParticle(symbol, color) {
+    if (stopPetals && symbol === '🌸') return;
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.innerHTML = symbol;
+    p.style.left = Math.random() * 100 + "vw";
+    p.style.color = color;
+    p.style.fontSize = (Math.random() * 10 + 12) + "px";
+    p.style.animationDuration = (Math.random() * 4 + 7) + "s";
+    document.getElementById('paper-container').appendChild(p);
+    setTimeout(() => p.remove(), 10000);
+}
+
+window.onload = () => {
+    const scenes = [1,2,3,4,5,6].map(n => document.getElementById(`n${n}`));
+    let step = 0;
+
+    const playPaper = () => {
+        if(step > 0) scenes[step-1].classList.remove('active-news');
+        if(step < scenes.length){
+            scenes[step].classList.add('active-news');
+
+            // Particle effects for smile & memory
+            if(step === 0) setInterval(() => createParticle('🌸', '#ff8fa3'), 350);
+            if(step === 1) setInterval(() => createParticle('✨', 'rgba(255,255,255,0.5)'), 400);
+
+            step++;
+            setTimeout(playPaper, 6500);
         }
+    };
+    playPaper();
+};
+</script>
 
-        window.onload = () => {
-            const scenes = [1,2,3,4,5,6,7].map(n => document.getElementById(`s${n}`));
-            let step = 0;
-
-            const startStory = () => {
-                if (step > 0) scenes[step-1].classList.remove('active-scene');
-                if (step < scenes.length) {
-                    scenes[step].classList.add('active-scene');
-
-                    if (step === 1) setInterval(() => createAura('🌸', '#ffc1cc'), 450);
-                    if (step === 2) document.getElementById('sunset-bg').style.opacity = "1";
-                    
-                    if (step === 5) {
-                        stopPetals = true;
-                        document.getElementById('night-bg').style.opacity = "1";
-                        setInterval(() => createAura('✨', 'rgba(255,255,255,0.4)'), 800);
-                    }
-
-                    if (step === 6) {
-                        setTimeout(() => {
-                            document.getElementById('star1').classList.add('star-meet-1');
-                            setTimeout(() => document.getElementById('star2').classList.add('star-meet-2'), 1800);
-                            setTimeout(() => document.getElementById('smile-btn').classList.add('show'), 4000);
-                        }, 2000);
-                    }
-
-                    let duration = (step === 0 || step === 1 || step === 6) ? 8500 : 6500;
-                    step++;
-                    setTimeout(startStory, duration);
-                }
-            };
-            startStory();
-        };
-    </script>
 </body>
 </html>
